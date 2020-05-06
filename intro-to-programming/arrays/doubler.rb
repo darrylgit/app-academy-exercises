@@ -1,7 +1,7 @@
 def doubler(numbers)
   i = 0
   while i < numbers.length
-    numbers[i] = numbers[i] * 2
+    numbers[i] *= 2
     i += 1
   end
 
