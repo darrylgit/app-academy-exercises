@@ -9,8 +9,8 @@ def merge(*hashes)
 end
 
 def censor(sentence, arr)
-  words = sentence.split(" ")
-  words.each_with_index do |word, i|
+
+  sentence.split(" ").each do |word|
     if arr.include?(word.downcase)
       word.each_char.with_index do |char, j| 
         if "aeiou".include?(char.downcase)
@@ -18,9 +18,8 @@ def censor(sentence, arr)
         end
       end
     end
-  end
+  end.join(' ')
 
-  words.join(' ')
 end
 
 def power_of_two?(num)
