@@ -22,6 +22,4 @@ def caesar_cipher(str, num)
   alphabet = "abcdefghijklmnopqrstuvwxyz"
 
   str.each_char.with_index { |letter, i| str[i] = alphabet[(alphabet.index(letter) + num) % 26] if alphabet.include?(letter) }
-
-  return str
 end
