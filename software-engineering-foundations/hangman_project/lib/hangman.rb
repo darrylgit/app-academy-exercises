@@ -49,7 +49,7 @@ class Hangman
     if matching_indices.empty?
       @remaining_incorrect_guesses -= 1
     else
-      fill_indices(char, matching_indices)
+      self.fill_indices(char, matching_indices)
     end
 
     return true
