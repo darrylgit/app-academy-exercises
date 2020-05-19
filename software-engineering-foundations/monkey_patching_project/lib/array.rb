@@ -32,4 +32,29 @@ class Array
 
     countsHash
   end
+
+  def my_count(arg)
+    self.inject(0) { |acc, el| el == arg ? acc + 1 : acc }
+  end
+
+  def my_index(arg)
+    self.each_with_index { |el, i| return i if el == arg }
+
+    nil
+  end
+
+  def my_uniq
+    self.inject([]) { |acc, el| !acc.include?(el) ? [*acc, el] : acc }
+  end
+
+  def my_transpose
+    output = []
+    self.length.times { output.push([]) }
+    
+    self.each do |subArr|
+      subArr.each_with_index { |el, i| output[i] << el }
+    end
+
+    output
+  end
 end
