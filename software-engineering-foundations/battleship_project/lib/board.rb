@@ -16,10 +16,7 @@ class Board
   end
 
   def num_ships
-    #Inject-ception!
-    @grid.inject(0) do |total, row|
-      total + row.inject(0) { |acc, val| val == :S ? acc + 1 : acc }
-    end
+    @grid.inject(0) { |total, row| total + row.count { |el| el == :S } }
   end
 
 end
