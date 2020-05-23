@@ -16,24 +16,34 @@ class Board
   # Instance methods
   def [](coordinates)
     @grid[coordinates[0]][coordinates[1]]
+
+    #Turns out, you can also destructure
+    # row, col = coordinates
+    # @grid[row][col]
   end
 
   def []=(coordinates, value)
     @grid[coordinates[0]][coordinates[1]] = value
+
+    #Turns out, you can also destructure
+    # row, col = coordinates
+    # @grid[row][col] = value
   end
 
   def num_ships
     @grid.inject(0) { |total, row| total + row.count { |square| square == :S } }
+
+    # This actually would have been an excellent use case for flatten. Oh well. 
   end
 
   def attack(coordinates)
-    if self.[](coordinates) == :S 
-      self.[]=(coordinates, :H)
+    if self.[cooordinates] == :S 
+      self.[coordinates]= :H
       puts "you sunk my battleship"
       return true
     end
 
-    self.[]=(coordinates, :X)
+    self.[coordinates] = :X
     false
   end
 
