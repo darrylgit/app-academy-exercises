@@ -33,3 +33,16 @@ describe "char indices" do
     expect(char_indices('classroom')).to eq({"c"=>[0], "l"=>[1], "a"=>[2], "s"=>[3, 4], "r"=>[5], "o"=>[6, 7], "m"=>[8]})
   end
 end
+
+describe "longest streak" do
+  it "should return the longest streak in the given string" do
+    expect(longest_streak('a')).to eq('a')
+    expect(longest_streak('accccbbb')).to eq('cccc')
+    expect(longest_streak('aaaxyyyyyzz')).to eq('yyyyy')
+  end
+
+  it "should return the latter streak in the event of a tie" do
+    expect(longest_streak('aaabbb')).to eq('bbb')
+    expect(longest_streak('abc')).to eq('c')
+  end
+end
