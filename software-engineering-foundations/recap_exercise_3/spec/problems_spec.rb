@@ -61,3 +61,12 @@ describe "bi prime" do
   end
 end
 
+describe "vigenere" do
+  it "should do the vigenere thing" do
+    expect(vigenere_cipher("toerrishuman", [1])).to eq("upfssjtivnbo")
+    expect(vigenere_cipher("toerrishuman", [1, 2])).to eq("uqftsktjvobp")
+    expect(vigenere_cipher("toerrishuman", [1, 2, 3])).to eq("uqhstltjxncq")
+    expect(vigenere_cipher("zebra", [3, 0])).to eq("ceerd")
+    expect(vigenere_cipher("yawn", [5, 1])).to eq("dbbo")
+  end
+end

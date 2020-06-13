@@ -61,14 +61,13 @@ def prime_factors(num)
   while num > 1
     candidate = primes.shift
 
-    # If candidate is a factor, divide num as many times as possbile and keep shovelling candidate into factors
+    # If candidate is a factor, divide num by candidate as many times as possbile and keep shovelling candidate into factors array
     while num % candidate == 0
       num /= candidate
       factors << candidate
     end
   end
 
-  // 
   return factors
 end
 
@@ -82,5 +81,16 @@ def prime?(num)
   end
 
   true
+end
+
+def vigenere_cipher(str, keys)
+  alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+  str.each_char.with_index do |letter, i|
+    vigenere_index = keys[i % keys.length];
+    str[i] = alphabet[(alphabet.index(letter) + vigenere_index) % 26]
+  end
+
+  str
 end
 
