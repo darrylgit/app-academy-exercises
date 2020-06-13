@@ -46,3 +46,18 @@ describe "longest streak" do
     expect(longest_streak('abc')).to eq('c')
   end
 end
+
+describe "bi prime" do
+  it "should return true for bi-prime numbers" do
+    expect(bi_prime?(14)).to eq(true)
+    expect(bi_prime?(22)).to eq(true)
+    expect(bi_prime?(25)).to eq(true)
+  end
+
+  it "should return false for non-bi-prime numbers" do
+    expect(bi_prime?(24)).to eq(false)
+    expect(bi_prime?(40)).to eq(false)
+    expect(bi_prime?(100)).to eq(false)
+  end
+end
+

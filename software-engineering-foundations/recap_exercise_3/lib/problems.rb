@@ -47,5 +47,40 @@ def longest_streak(str)
 
 end
 
-longest_streak('aabbbcc')
+def bi_prime?(num)
+  # Check if prime factors array has exactly two elements
+  return prime_factors(num).length == 2
+end
+
+def prime_factors(num)
+  # Generate primes between 2 and num 
+  primes = (2...num).to_a.select { |factor| prime?(factor) }
+
+  factors = []
+
+  while num > 1
+    candidate = primes.shift
+
+    # If candidate is a factor, divide num as many times as possbile and keep shovelling candidate into factors
+    while num % candidate == 0
+      num /= candidate
+      factors << candidate
+    end
+  end
+
+  // 
+  return factors
+end
+
+def prime?(num)
+  return false if num < 2
+
+  (2...num).each do |factor|
+      if num % factor == 0
+          return false
+      end
+  end
+
+  true
+end
 
