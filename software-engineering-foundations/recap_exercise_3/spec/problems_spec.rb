@@ -70,3 +70,13 @@ describe "vigenere" do
     expect(vigenere_cipher("yawn", [5, 1])).to eq("dbbo")
   end
 end
+
+describe "vowel rotate" do
+  it "should rotate vowels like a boss" do
+    expect(vowel_rotate('computer')).to eq("cempotur")
+    expect(vowel_rotate('oranges')).to eq("erongas")
+    expect(vowel_rotate('headphones')).to eq("heedphanos")
+    expect(vowel_rotate('bootcamp')).to eq("baotcomp")
+    expect(vowel_rotate('awesome')).to eq("ewasemo")
+  end
+end

@@ -87,10 +87,31 @@ def vigenere_cipher(str, keys)
   alphabet = "abcdefghijklmnopqrstuvwxyz"
 
   str.each_char.with_index do |letter, i|
-    vigenere_index = keys[i % keys.length];
-    str[i] = alphabet[(alphabet.index(letter) + vigenere_index) % 26]
+    # Figure out the vigenere key for this iteration
+    vigenere_key = keys[i % keys.length];
+
+    #Rotate letter by that key value
+    str[i] = alphabet[(alphabet.index(letter) + vigenere_key) % 26]
   end
 
   str
 end
 
+def vowel_rotate(str) 
+  vowels = "aeiou"
+
+  # Extract vowels from string
+  str_vowels = str.split('').select { |char| vowels.include?(char) }
+
+  # Re-order that array
+  str_vowels.unshift(str_vowels.pop)
+
+  # Replace vowels in string with vowels from that array
+  str.each_char.with_index do |char, i|
+    if vowels.include?(char)
+      str[i] = str_vowels.shift
+    end
+  end
+  
+  str
+end
