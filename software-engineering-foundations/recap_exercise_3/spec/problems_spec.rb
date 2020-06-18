@@ -114,3 +114,15 @@ describe "String#map!" do
     expect(word_2).to eq("DiJkStRa")
   end
 end
+
+describe("multiply") do
+  it "should multiply things (recursively)" do
+    expect(multiply(3, 5)).to eq(15)     
+    expect(multiply(5, 3)).to eq(15)     
+    expect(multiply(2, 4)).to eq(8)    
+    expect(multiply(0, 10)).to eq(0)    
+    expect(multiply(-3, -6)).to eq(18)     
+    expect(multiply(3, -6)).to eq(-18)      
+    expect(multiply(-3, 6)).to eq(-18)  
+  end
+end   

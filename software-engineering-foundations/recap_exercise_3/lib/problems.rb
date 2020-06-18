@@ -128,3 +128,18 @@ class String
     self.each_char.with_index { |char, i| self[i] = prc.call(char, i)}
   end
 end
+
+def multiply(a, b)
+  if b < 0 && a >= 0
+    a -= 1
+    return a == 0 ? b : b + multiply(a, b)
+  else
+    if b <= 0 && a <= 0
+      b = b.abs()
+      a = a.abs()
+    end
+    
+    b -= 1
+    return b == 0 ? a : a + multiply(a, b)
+  end
+end
