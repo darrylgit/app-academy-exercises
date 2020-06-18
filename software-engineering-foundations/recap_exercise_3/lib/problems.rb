@@ -124,7 +124,7 @@ class String
     output
   end
 
-  def map(&prc)
+  def map!(&prc)
     self.each_char.with_index { |char, i| self[i] = prc.call(char, i)}
   end
 end

@@ -88,3 +88,29 @@ describe "String#select" do
     expect("HELLOworld".select).to eq("")         
   end
 end
+
+describe "String#map!" do
+  it "should map Strings" do 
+    word_1 = "Lovelace"
+    word_1.map! do |ch| 
+      if ch == 'e'
+          '3'
+      elsif ch == 'a'
+          '4'
+      else
+          ch
+      end
+    end
+    expect(word_1).to eq("Lov3l4c3")
+
+    word_2 = "Dijkstra"
+    word_2.map! do |ch, i|
+      if i.even?
+        ch.upcase
+      else
+        ch.downcase
+      end
+    end
+    expect(word_2).to eq("DiJkStRa")
+  end
+end
