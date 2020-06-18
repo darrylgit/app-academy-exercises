@@ -80,3 +80,11 @@ describe "vowel rotate" do
     expect(vowel_rotate('awesome')).to eq("ewasemo")
   end
 end
+
+describe "String#select" do
+  it "should select things from Strings" do
+    expect("app academy".select { |ch| !"aeiou".include?(ch) }).to eq("pp cdmy")   
+    expect("HELLOworld".select { |ch| ch == ch.upcase }).to eq("HELLO")         
+    expect("HELLOworld".select).to eq("")         
+  end
+end

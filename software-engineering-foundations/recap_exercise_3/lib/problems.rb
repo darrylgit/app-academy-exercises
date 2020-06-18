@@ -115,3 +115,16 @@ def vowel_rotate(str)
   
   str
 end
+
+class String  
+  def select(&prc)
+    output = ""
+    return output if !prc
+    self.each_char.with_index { |char, i| output += char if prc.call(char) }
+    output
+  end
+
+  def map(&prc)
+    self.each_char.with_index { |char, i| self[i] = prc.call(char, i)}
+  end
+end
