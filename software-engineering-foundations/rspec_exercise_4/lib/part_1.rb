@@ -16,3 +16,9 @@ def my_one?(arr, &prc)
 
   return got_one
 end
+
+def hash_select(hash, &prc)
+  new_hash = Hash.new()
+  hash.each { |key, val| new_hash[key] = val if prc.call(key, val) }
+  new_hash
+end
