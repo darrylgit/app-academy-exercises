@@ -151,3 +151,18 @@ def lucas_sequence(len)
 
   lucas_sequence(len - 1) << lucas_sequence(len -1)[-1] + lucas_sequence(len-1)[-2]
 end
+
+def prime_factorization(num)
+  prime_factor = 0
+
+  (2..num).each do |factor|
+    if num % factor == 0 
+      prime_factor = factor
+      break
+    end
+  end
+
+  return [prime_factor] if prime_factor == num
+
+  return [prime_factor, *prime_factorization(num / prime_factor)]
+end
