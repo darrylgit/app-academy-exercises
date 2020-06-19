@@ -26,3 +26,7 @@ end
 def xor_select(arr, prc1, prc2)
   arr.select { |el| [prc1.call(el), prc2.call(el)].one? }
 end
+
+def proc_count(val, procs)
+  procs.count { |prc| prc.call(val) }
+end
