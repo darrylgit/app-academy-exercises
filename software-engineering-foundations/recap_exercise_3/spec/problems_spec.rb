@@ -125,4 +125,15 @@ describe("multiply") do
     expect(multiply(3, -6)).to eq(-18)      
     expect(multiply(-3, 6)).to eq(-18)  
   end
-end   
+end  
+
+describe("lucas sequence") do
+  it "should make Lucas sequences" do
+    expect(lucas_sequence(0)).to eq([])
+    expect(lucas_sequence(1)).to eq([2])   
+    expect(lucas_sequence(2)).to eq([2, 1])   
+    expect(lucas_sequence(3)).to eq([2, 1, 3])   
+    expect(lucas_sequence(6)).to eq([2, 1, 3, 4, 7, 11])   
+    expect(lucas_sequence(8)).to eq([2, 1, 3, 4, 7, 11, 18, 29])
+  end
+end

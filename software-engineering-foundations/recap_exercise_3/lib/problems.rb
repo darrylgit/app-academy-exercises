@@ -138,8 +138,16 @@ def multiply(a, b)
       b = b.abs()
       a = a.abs()
     end
-    
+
     b -= 1
     return b == 0 ? a : a + multiply(a, b)
   end
+end
+
+def lucas_sequence(len)
+  return [] if len == 0
+  return [2] if len == 1
+  return [2, 1] if len == 2
+
+  lucas_sequence(len - 1) << lucas_sequence(len -1)[-1] + lucas_sequence(len-1)[-2]
 end
