@@ -22,3 +22,7 @@ def hash_select(hash, &prc)
   hash.each { |key, val| new_hash[key] = val if prc.call(key, val) }
   new_hash
 end
+
+def xor_select(arr, prc1, prc2)
+  arr.select { |el| [prc1.call(el), prc2.call(el)].one? }
+end
