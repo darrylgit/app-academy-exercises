@@ -9,3 +9,8 @@ def zip(*arrs)
 
   output
 end
+
+# ROFL this is the same damn algorithm as xor_select
+def prizz_proc(arr, prc1, prc2)
+  arr.select { |el| [prc1.call(el), prc2.call(el)].one? }
+end
