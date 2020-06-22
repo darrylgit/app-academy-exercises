@@ -34,3 +34,13 @@ def zany_zip(*arrs)
 
   output
 end
+
+def maximum(arr, &prc)
+  arr.inject(nil) do |acc, val| 
+    if acc == nil
+      acc = val
+    end
+
+    acc = prc.call(val) >= prc.call(acc) ? val : acc;
+  end
+end
