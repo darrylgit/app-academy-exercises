@@ -44,3 +44,18 @@ def maximum(arr, &prc)
     acc = prc.call(val) >= prc.call(acc) ? val : acc;
   end
 end
+
+def my_group_by(arr, &prc)
+  groups = Hash.new()
+
+  arr.each do |el|
+    proc_key = prc.call(el)
+    if groups.has_key?(proc_key)
+      groups[proc_key] << el
+    else
+      groups[proc_key] = [el]
+    end
+  end
+
+  groups
+end
