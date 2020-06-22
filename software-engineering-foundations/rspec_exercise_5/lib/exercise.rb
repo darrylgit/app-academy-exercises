@@ -59,3 +59,17 @@ def my_group_by(arr, &prc)
 
   groups
 end
+
+def max_tie_breaker(arr, tie_break, &prc)
+  grouped = my_group_by(arr, &prc)
+
+  max = grouped[grouped.keys.max]
+
+  arr.inject(nil) do |acc, val| 
+    if acc == nil
+      acc = val
+    end
+
+    acc = prc.call(val) > prc.call(acc) ? val : acc;
+  end
+end
