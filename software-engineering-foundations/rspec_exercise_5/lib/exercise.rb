@@ -73,3 +73,13 @@ def max_tie_breaker(arr, tie_break, &prc)
     acc = prc.call(val) > prc.call(acc) ? val : acc;
   end
 end
+
+def silly_syllables(str)
+  str.split(' ').map do |word| 
+    first = word.index(/[aeiou]/)
+    last = word.rindex(/[aeiou]/)
+
+    
+    first == last ? word : word[first..last]
+  end.join(' ')
+end
