@@ -31,7 +31,7 @@ describe "matrix_addition" do
 end
 
 describe "mutual_factors" do
-  it "as" do
+  it "returns an array containing all of the common divisors shared among the arguments" do
     expect(mutual_factors(50, 30)).to eq([1, 2, 5, 10])             
     expect(mutual_factors(50, 30, 45, 105)).to eq([1, 5])   
     expect(mutual_factors(8, 4)).to eq([1, 2, 4])               
@@ -44,3 +44,16 @@ describe "mutual_factors" do
     expect(mutual_factors(7, 9)).to eq([1])              
   end
 end
+
+describe "tribonacci_number" do
+  it "returns the n-th number of the tribonacci sequence" do
+    expect(tribonacci_number(1)).to eq(1) 
+    expect(tribonacci_number(2)).to eq(1)  
+    expect(tribonacci_number(3)).to eq(2)  
+    expect(tribonacci_number(4)).to eq(4) 
+    expect(tribonacci_number(5)).to eq(7) 
+    expect(tribonacci_number(6)).to eq(13)  
+    expect(tribonacci_number(7)).to eq(24)  
+    expect(tribonacci_number(11)).to eq(274)
+  end
+end 

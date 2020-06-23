@@ -23,3 +23,11 @@ end
 def get_factors(num)
   (1..num).select { |factor| num % factor == 0}
 end
+
+def tribonacci_number(num)
+  return 0 if num < 1
+  return 1 if num == 1 || num == 2
+  return 2 if num == 3
+
+  return tribonacci_number(num - 1) + tribonacci_number(num - 2) + tribonacci_number(num - 3)
+end
