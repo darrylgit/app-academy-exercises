@@ -19,3 +19,11 @@ def pair_product(nums, product)
 
   pair_exists
 end
+
+def rampant_repeats(str, hash)
+  output = ""
+
+  str.each_char { |char| output += char * (hash[char] || 1) }
+
+  output
+end
