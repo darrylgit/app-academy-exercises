@@ -31,3 +31,4 @@ def tribonacci_number(num)
 
   return tribonacci_number(num - 1) + tribonacci_number(num - 2) + tribonacci_number(num - 3)
 end
+
