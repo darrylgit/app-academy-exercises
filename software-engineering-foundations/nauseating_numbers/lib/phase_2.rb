@@ -13,3 +13,13 @@ def matrix_addition(matrix1, matrix2)
     end
   end
 end
+
+def mutual_factors(*nums)
+  factors = nums.map { |num| get_factors(num) }
+  
+  factors[0].select { |factor| factors.flatten.count(factor) == nums.length }
+end
+
+def get_factors(num)
+  (1..num).select { |factor| num % factor == 0}
+end

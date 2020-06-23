@@ -15,7 +15,7 @@ describe "anti_prime?" do
   end
 end
 
-describe "matrix addition" do
+describe "matrix_addition" do
   let(:matrix_a) { [[2,5], [4,7]] }
   let(:matrix_b) { [[9,1], [3,0]] }
   let(:matrix_c) { [[-1,0], [0,-1]] }
@@ -27,5 +27,20 @@ describe "matrix addition" do
     expect(matrix_addition(matrix_a, matrix_c)).to eq([[1, 5], [4, 6]])  
     expect(matrix_addition(matrix_b, matrix_c)).to eq([[8, 1], [3, -1]])  
     expect(matrix_addition(matrix_d, matrix_e)).to eq([[2, -5], [19, 14], [6, 4]]) 
+  end
+end
+
+describe "mutual_factors" do
+  it "as" do
+    expect(mutual_factors(50, 30)).to eq([1, 2, 5, 10])             
+    expect(mutual_factors(50, 30, 45, 105)).to eq([1, 5])   
+    expect(mutual_factors(8, 4)).to eq([1, 2, 4])               
+    expect(mutual_factors(8, 4, 10)).to eq([1, 2])          
+    expect(mutual_factors(12, 24)).to eq([1, 2, 3, 4, 6, 12])            
+    expect(mutual_factors(12, 24, 64)).to eq([1, 2, 4])        
+    expect(mutual_factors(22, 44)).to eq([1, 2, 11, 22])             
+    expect(mutual_factors(22, 44, 11)).to eq([1, 11])         
+    expect(mutual_factors(7)).to eq([1, 7])                  
+    expect(mutual_factors(7, 9)).to eq([1])              
   end
 end
