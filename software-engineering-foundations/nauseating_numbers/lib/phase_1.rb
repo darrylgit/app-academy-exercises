@@ -34,5 +34,3 @@ def perfect_square(num)
   (1..num).each { |factor| return true if factor * factor == num }
   false
 end
-
-perfect_square(64)
