@@ -8,3 +8,14 @@ def strange_sums(nums)
 
   count
 end
+
+def pair_product(nums, product)
+  pair_exists = false
+
+  while nums.length > 1
+    nums[1..-1].each { |num| pair_exists = true if num * nums[0] == product }
+    nums.shift()
+  end
+
+  pair_exists
+end
