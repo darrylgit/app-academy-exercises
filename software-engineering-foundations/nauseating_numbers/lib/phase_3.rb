@@ -26,3 +26,10 @@ def squarocol?(matrix)
 
   false
 end
+
+def squaragonal?(matrix)
+  diagonal_1 = matrix.each.with_index.inject([]) { |acc, (val, i)| [*acc, val[i]] }
+  diagonal_2 = matrix.reverse.each.with_index.inject([]) { |acc, (val, i)| [*acc, val[i]] }
+
+  [diagonal_1, diagonal_2].map { |diag| diag.uniq }.any? { |arr| arr.length == 1 }
+end

@@ -50,6 +50,35 @@ describe "squarocol?" do
       [0, 5, 2, 7],
       [4, 2, 9, 7],
     ])).to eq(false) 
+  end
+end
 
+describe "squaragonal?" do
+  it "returns a boolean indicating whether or not the array contains all of the same element across either of its diagonals" do
+    expect(squaragonal?([
+      [:x, :y, :o],
+      [:x, :x, :x],
+      [:o, :o, :x],
+    ])).to eq(true) 
+
+    expect(squaragonal?([
+      [:x, :y, :o],
+      [:x, :o, :x],
+      [:o, :o, :x],
+    ])).to eq(true) 
+
+    expect(squaragonal?([
+      [1, 2, 2, 7],
+      [1, 1, 6, 7],
+      [0, 5, 1, 7],
+      [4, 2, 9, 1],
+    ])).to eq(true) 
+
+    expect(squaragonal?([
+      [1, 2, 2, 5],
+      [1, 6, 5, 0],
+      [0, 2, 2, 7],
+      [5, 2, 9, 7],
+    ])).to eq(false) 
   end
 end
