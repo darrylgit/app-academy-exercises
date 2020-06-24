@@ -33,3 +33,29 @@ def squaragonal?(matrix)
 
   [diagonal_1, diagonal_2].map { |diag| diag.uniq }.any? { |arr| arr.length == 1 }
 end
+
+def pascals_triangle(n)
+  triangle = []
+
+  while n > 0
+    # Initial level
+    if !triangle[-1] 
+      triangle << [1]
+    else
+      new_level = []
+      # Bookend previous level with actual zeroes to make our lives easier
+      prev_level = [0, *triangle[-1], 0]
+
+      # Shovel all sums into new_level
+      (0..prev_level.length - 2).each do |index|
+        new_level << prev_level[index] + prev_level[index + 1] 
+      end
+
+      triangle << new_level
+    end
+
+    n -= 1
+  end
+
+  triangle
+end
