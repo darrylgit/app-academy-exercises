@@ -16,3 +16,40 @@ describe "matrix_addition_reloaded" do
     expect(matrix_addition_reloaded(matrix_d, matrix_e, matrix_c)).to eq(nil)   
   end
 end
+
+describe "squarocol?" do
+  it "returns a boolean indicating whether or not any row or column is completely filled with the same element" do
+    expect(squarocol?([
+      [:a, :x , :d],
+      [:b, :x , :e],
+      [:c, :x , :f],
+    ])).to eq(true) 
+
+    expect(squarocol?([
+      [:x, :y, :x],
+      [:x, :z, :x],
+      [:o, :o, :o],
+    ])).to eq(true) 
+
+    expect(squarocol?([
+      [:o, :x , :o],
+      [:x, :o , :x],
+      [:o, :x , :o],
+    ])).to eq(false) 
+
+    expect(squarocol?([
+      [1, 2, 2, 7],
+      [1, 6, 6, 7],
+      [0, 5, 2, 7],
+      [4, 2, 9, 7],
+    ])).to eq(true)
+
+    expect(squarocol?([
+      [1, 2, 2, 7],
+      [1, 6, 6, 0],
+      [0, 5, 2, 7],
+      [4, 2, 9, 7],
+    ])).to eq(false) 
+
+  end
+end
