@@ -21,4 +21,17 @@ describe "triangular_word?" do
     expect(triangular_word?('cat')).to eq(false)       
     expect(triangular_word?('sink')).to eq(false)
   end
-end     
+end  
+
+describe "consecutive_collapse" do
+  it "returns a new array that results from continuously removing consecutive numbers that are adjacent in the array" do
+    expect(consecutive_collapse([3, 4, 1])).to eq([1])                     
+    expect(consecutive_collapse([1, 4, 3, 7])).to eq([1, 7])                  
+    expect(consecutive_collapse([9, 8, 2])).to eq([2])                     
+    expect(consecutive_collapse([9, 8, 4, 5, 6])).to eq([6])               
+    expect(consecutive_collapse([1, 9, 8, 6, 4, 5, 7, 9, 2])).to eq([1, 9, 2])   
+    expect(consecutive_collapse([3, 5, 6, 2, 1])).to eq([1])               
+    expect(consecutive_collapse([5, 7, 9, 9])).to eq([5, 7, 9, 9])                 
+    expect(consecutive_collapse([13, 11, 12, 12])).to eq([])
+  end
+end              

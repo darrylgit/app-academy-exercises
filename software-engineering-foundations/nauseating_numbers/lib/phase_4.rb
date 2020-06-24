@@ -47,3 +47,25 @@ end
 def number_encode(str)
   "abcdefghijklmnopqrstuvwxyz".index(str) + 1
 end
+
+def consecutive_collapse(arr)
+  # Keep paring down the original array using splats
+  while adjacent_index(arr)
+    i = adjacent_index(arr)
+    arr = [*arr[0...i], *arr[i + 2..-1]]
+  end
+
+  arr
+end
+
+def adjacent_index(arr)
+  # Return index of first element in consecutive adjacent pair
+  (0...arr.length - 1).each do |idx|
+    return idx if (arr[idx] - arr[idx+1]).abs == 1
+  end
+
+  nil
+end
+
+
+
