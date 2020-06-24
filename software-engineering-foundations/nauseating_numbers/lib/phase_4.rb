@@ -67,5 +67,50 @@ def adjacent_index(arr)
   nil
 end
 
+def pretentious_primes(arr, n)
+  arr.map do |el|
+    # Copy n
+    x = n 
 
+    # When n is positive:
+    if n > 0
+
+      while x > 0
+        # Increment el (in case el is already prime)
+        el = el + 1
+
+        # Find next prime
+        until is_prime?(el)
+          el += 1
+        end
+
+        x -= 1
+      end
+    else
+      # When n is negative:
+      while x < 0
+        # Skip iteration if we've already reached nil
+        next if el == nil
+        
+        # Decrement el (in case el is already prime)
+        el = el - 1
+
+        until is_prime?(el) || el == 0
+          el -= 1
+        end
+
+        # Make el nil if we reached 0
+        if el == 0
+          el = nil
+          break
+        end
+
+        x += 1
+      end
+
+    end
+
+    el
+  end
+end
 
