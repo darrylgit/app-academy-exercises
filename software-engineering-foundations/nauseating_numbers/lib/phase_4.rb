@@ -33,3 +33,17 @@ def is_mersenne?(num)
   2**e - 1 == num
 end
 
+def triangular_word?(str)
+  nums = []
+  str.each_char { |char| nums << number_encode(char) }
+  
+  is_triangular?(nums.sum)
+end
+
+def is_triangular?(num)
+  (0..num).any? { |i| (i**2 + i) == num * 2 }
+end
+
+def number_encode(str)
+  "abcdefghijklmnopqrstuvwxyz".index(str) + 1
+end
