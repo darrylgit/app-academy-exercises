@@ -48,3 +48,21 @@ describe "at_least?" do
     expect(at_least?([true, true, true, true], 3) { |bool| bool }).to eq(true)
   end
 end
+
+describe "every?" do
+  it "returns a boolean indicating whether or not all elements of the array return true when given to the block" do
+    expect(every?([3, 1, 11, 5]) { |n| n.even? }).to eq(false)                                
+    expect(every?([2, 4, 4, 8]) { |n| n.even? }).to eq(true)                                  
+    expect(every?([8, 2]) { |n| n.even? }).to eq(true)                                        
+    expect(every?(['squash', 'corn', 'kale', 'carrot']) { |str| str[0] == 'p' }).to eq(false)  
+    expect(every?(['squash', 'pea', 'kale', 'potato']) { |str| str[0] == 'p' }).to eq(false)   
+    expect(every?(['parsnip', 'potato', 'pea']) { |str| str[0] == 'p' }).to eq(true)
+  end
+end          
+
+
+# describe "at most?" do 
+#   it "returns a boolean indicating whether no more than n elements of the array return true when given to the block" do
+
+#   end
+# end

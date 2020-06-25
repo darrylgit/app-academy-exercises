@@ -23,3 +23,8 @@ def at_least?(arr, n, &prc)
 
   matches.length >= n
 end
+
+def every?(arr, &prc)
+  arr.each { |el| return false if !prc.call(el) }
+  true
+end
