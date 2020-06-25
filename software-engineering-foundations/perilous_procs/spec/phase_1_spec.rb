@@ -32,4 +32,19 @@ describe "filter_out" do
     expect(filter_out([10, 6, 3, 2, 5 ]) { |x| x.even? }).to eq([3, 5])     
     expect(filter_out([1, 7, 3, 5 ]) { |x| x.even? }).to eq([1, 7, 3, 5]) 
   end
-end        
+end 
+
+describe "at_least?" do
+  it "returns a boolean indicating whether or not at least n elements of the array return true when given to the block" do
+    expect(at_least?(['sad', 'quick', 'timid', 'final'], 2) { |s| s.end_with?('ly') }).to eq(false)
+    expect(at_least?(['sad', 'quickly', 'timid', 'final'], 2) { |s| s.end_with?('ly') }).to eq(false)
+    expect(at_least?(['sad', 'quickly', 'timidly', 'final'], 2) { |s| s.end_with?('ly') }).to eq(true)
+    expect(at_least?(['sad', 'quickly', 'timidly', 'finally'], 2) { |s| s.end_with?('ly') }).to eq(true)
+    expect(at_least?(['sad', 'quickly', 'timid', 'final'], 1) { |s| s.end_with?('ly') }).to eq(true)
+    expect(at_least?(['sad', 'quick', 'timid', 'final'], 1) { |s| s.end_with?('ly') }).to eq(false)
+    expect(at_least?([false, false, false], 3) { |bool| bool }).to eq(false)
+    expect(at_least?([false, true, true], 3) { |bool| bool }).to eq(false)
+    expect(at_least?([true, true, true], 3) { |bool| bool }).to eq(true)
+    expect(at_least?([true, true, true, true], 3) { |bool| bool }).to eq(true)
+  end
+end

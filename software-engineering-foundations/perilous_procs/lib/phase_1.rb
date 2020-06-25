@@ -13,6 +13,13 @@ end
 def filter_out(arr, &prc)
   matches = []
   arr.each { |el| matches << el if !prc.call(el) }
-  
+
   matches
+end
+
+def at_least?(arr, n, &prc)
+  matches = []
+  arr.each { |el| matches << el if prc.call(el) }
+
+  matches.length >= n
 end
