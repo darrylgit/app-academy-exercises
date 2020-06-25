@@ -4,10 +4,10 @@ def some?(arr, &prc)
 end
 
 def exactly?(arr, n, &prc)
-  matches = []
-  arr.each { |el| matches << el if prc.call(el) }
+  matches = 0
+  arr.each { |el| matches += 1 if prc.call(el) }
 
-  matches.length == n
+  matches == n
 end
 
 def filter_out(arr, &prc)
@@ -18,10 +18,10 @@ def filter_out(arr, &prc)
 end
 
 def at_least?(arr, n, &prc)
-  matches = []
-  arr.each { |el| matches << el if prc.call(el) }
+  matches = 0
+  arr.each { |el| matches += 1 if prc.call(el) }
 
-  matches.length >= n
+  matches >= n
 end
 
 def every?(arr, &prc)
@@ -34,4 +34,9 @@ def at_most?(arr, n, &prc)
   arr.each { |el| matches += 1 if prc.call(el) }
 
   matches <= n
+end
+
+def first_index(arr, &prc)
+  arr.each_with_index { |el, i| return i if prc.call(el) }
+  nil
 end

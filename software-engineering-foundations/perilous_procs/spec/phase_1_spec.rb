@@ -72,3 +72,14 @@ describe "at most?" do
     expect(at_most?(['r', 'i', 'e', 'o'], 2) { |el| 'aeiou'.include?(el) }).to eq(false)    # false
   end
 end
+
+describe "first_index" do
+  it "returns the index of the first element of the array that returns true when given to the block" do
+    expect(first_index(['bit', 'cat', 'byte', 'below']) { |el| el.length > 3 }).to eq(2)           # 2
+    expect(first_index(['bitten', 'bit', 'cat', 'byte', 'below']) { |el| el.length > 3 }).to eq(0) # 0
+    expect(first_index(['bitten', 'bit', 'cat', 'byte', 'below']) { |el| el.length > 6 }).to eq(nil) # nil
+    expect(first_index(['bit', 'cat', 'byte', 'below']) { |el| el[0] == 'b' }).to eq(0)            # 0
+    expect(first_index(['bit', 'cat', 'byte', 'below']) { |el| el.include?('a') }).to eq(1)        # 1
+    expect(first_index(['bit', 'cat', 'byte', 'below']) { |el| el[0] == 't' }).to eq(nil)            # nil
+  end
+end
