@@ -10,3 +10,17 @@ describe "some?" do
     expect(some?(['parsnip', 'lettuce', 'pea']) { |str| str[0] == 'p' }).to eq(true)        
   end
 end
+
+describe "exactly?" do
+  it "returns a boolean indicating whether or not there are exactly n elements that return true when given to the block" do
+    expect(exactly?(['A', 'b', 'C'], 2) { |el| el == el.upcase }).to eq(true)         # true
+    expect(exactly?(['A', 'B', 'C'], 2) { |el| el == el.upcase }).to eq(false)         # false
+    expect(exactly?(['A', 'B', 'C'], 3) { |el| el == el.upcase }).to eq(true)         # true
+    expect(exactly?(['cat', 'DOG', 'bird'], 1) { |el| el == el.upcase }).to eq(true)  # true
+    expect(exactly?(['cat', 'DOG', 'bird'], 0) { |el| el == el.upcase }).to eq(false)  # false
+    expect(exactly?(['cat', 'dog', 'bird'], 0) { |el| el == el.upcase }).to eq(true)  # true
+    expect(exactly?([4, 5], 3) { |n| n > 0 }).to eq(false)                             # false
+    expect(exactly?([4, 5, 2], 3) { |n| n > 0 }).to eq(true)                          # true
+    expect(exactly?([42, -9, 7, -3, -6], 2) { |n| n > 0 }).to eq(true)                # true
+  end
+end
