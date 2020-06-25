@@ -24,3 +24,12 @@ describe "exactly?" do
     expect(exactly?([42, -9, 7, -3, -6], 2) { |n| n > 0 }).to eq(true)                # true
   end
 end
+
+describe "filter_out" do
+  it "returns a new array where elements of the original array are removed if they return true when given to the block" do
+    expect(filter_out([10, 6, 3, 2, 5 ]) { |x| x.odd? }).to eq([10, 6, 2])     
+    expect(filter_out([1, 7, 3, 5 ]) { |x| x.odd? }).to eq([])          
+    expect(filter_out([10, 6, 3, 2, 5 ]) { |x| x.even? }).to eq([3, 5])     
+    expect(filter_out([1, 7, 3, 5 ]) { |x| x.even? }).to eq([1, 7, 3, 5]) 
+  end
+end        
