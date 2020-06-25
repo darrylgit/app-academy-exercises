@@ -61,8 +61,14 @@ describe "every?" do
 end          
 
 
-# describe "at most?" do 
-#   it "returns a boolean indicating whether no more than n elements of the array return true when given to the block" do
-
-#   end
-# end
+describe "at most?" do 
+  it "returns a boolean indicating whether no more than n elements of the array return true when given to the block" do
+    expect(at_most?([-4, 100, -3], 1) { |el| el > 0 }).to eq(true)                         # true
+    expect(at_most?([-4, -100, -3], 1) { |el| el > 0 }).to eq(true)                        # true
+    expect(at_most?([4, 100, -3], 1) { |el| el > 0 }).to eq(false)                          # false
+    expect(at_most?([4, 100, 3], 1) { |el| el > 0 }).to eq(false)                           # false
+    expect(at_most?(['r', 'q', 'e', 'z'], 2) { |el| 'aeiou'.include?(el) }).to eq(true)    # true
+    expect(at_most?(['r', 'i', 'e', 'z'], 2) { |el| 'aeiou'.include?(el) }).to eq(true)    # true
+    expect(at_most?(['r', 'i', 'e', 'o'], 2) { |el| 'aeiou'.include?(el) }).to eq(false)    # false
+  end
+end

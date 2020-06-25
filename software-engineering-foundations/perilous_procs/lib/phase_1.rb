@@ -28,3 +28,10 @@ def every?(arr, &prc)
   arr.each { |el| return false if !prc.call(el) }
   true
 end
+
+def at_most?(arr, n, &prc)
+  matches = 0
+  arr.each { |el| matches += 1 if prc.call(el) }
+
+  matches <= n
+end
