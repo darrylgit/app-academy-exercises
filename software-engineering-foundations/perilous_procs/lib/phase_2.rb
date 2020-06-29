@@ -13,3 +13,8 @@ def filter_out!(arr, &prc)
     arr.push(filtered.shift)
   end
 end
+
+def multi_map(arr, n = 1, &prc)
+  n.times { arr = arr.map { |el| prc.call(el) }}
+  arr
+end
