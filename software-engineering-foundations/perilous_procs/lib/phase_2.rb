@@ -18,3 +18,10 @@ def multi_map(arr, n = 1, &prc)
   n.times { arr = arr.map { |el| prc.call(el) }}
   arr
 end
+
+def proctition(arr, &prc)
+  passed = arr.select { |el| prc.call(el) }
+  rejected = arr.select { |el| !prc.call(el) }
+
+  [*passed, *rejected]
+end

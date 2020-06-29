@@ -41,4 +41,13 @@ describe "multi_map" do
     expect(multi_map([4, 3, 2, 7], 2) { |num| num * 10 }).to eq([400, 300, 200, 700])             
     expect(multi_map([4, 3, 2, 7], 4) { |num| num * 10 }).to eq([40000, 30000, 20000, 70000])
   end
-end             
+end
+
+describe "proctition" do
+  it "returns a new array where the elements that return true when given to the block come before all of the elements that return false when given to the block" do
+    expect(proctition([4, -5, 7, -10, -2, 1, 3]) { |el| el > 0 }).to eq([4, 7, 1, 3, -5, -10, -2])
+    expect(proctition([7, 8, 3, 6, 10]) { |el| el.even? }).to eq([8, 6, 10, 7, 3])
+    expect(proctition(['cat','boot', 'dog', 'bug', 'boat']) { |s| s[0] == 'b' }).to eq(["boot", "bug", "boat", "cat", "dog"])
+  end
+end
+  
