@@ -32,3 +32,19 @@ def proctition_platinum(arr, *prcs)
 
   output
 end
+
+def procipher(str, proc_hash)
+  str.split(' ').map do |word|
+    procs_to_apply = []
+
+    proc_hash.keys.each do |prc|
+      procs_to_apply << proc_hash[prc] if prc.call(word)
+    end
+
+    procs_to_apply.each do |prc|
+      word = prc.call(word)
+    end
+
+    word
+  end.join(' ')
+end
