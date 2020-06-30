@@ -24,3 +24,17 @@ describe "selected_map!" do
     expect(arr_3).to eq([-10, 16, 49, 36, -2, -9])                                     
   end
 end
+
+describe "chain_map" do 
+  let(:add_5) { Proc.new { |n| n + 5 } } 
+  let(:half) { Proc.new { |n| n / 2.0 } } 
+  let(:square) { Proc.new { |n| n * n } } 
+
+  it "returns the final result of feeding the value through all of the proc" do
+    expect(chain_map(25, [add_5, half])).to eq(15.0)         
+    expect(chain_map(25, [half, add_5])).to eq(17.5)         
+    expect(chain_map(25, [add_5, half, square])).to eq(225) 
+    expect(chain_map(4, [square, half])).to eq(8)         
+    expect(chain_map(4, [half, square])).to eq(4)
+  end
+end         

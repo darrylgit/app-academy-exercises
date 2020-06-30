@@ -6,3 +6,9 @@ def selected_map!(arr, prc1, prc2)
 
   nil
 end
+
+def chain_map(val, procs)
+  procs.each { |prc| val = prc.call(val) }
+  val
+end
+
