@@ -48,3 +48,17 @@ def procipher(str, proc_hash)
     word
   end.join(' ')
 end
+
+def picky_procipher(str, proc_hash)
+  str.split(' ').map do |word|
+    proc_to_apply = false
+
+    proc_hash.keys.each do |prc|
+      proc_to_apply = proc_hash[prc] if prc.call(word) && !proc_to_apply
+    end
+
+    word = proc_to_apply.call(word) if proc_to_apply
+    
+    word
+  end.join(' ')
+end

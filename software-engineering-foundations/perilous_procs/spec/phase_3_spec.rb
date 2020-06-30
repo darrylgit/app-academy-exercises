@@ -123,3 +123,41 @@ describe "procipher" do
     )).to eq("STOP:) that??? taxi??? !won")
   end
 end
+
+describe "picky_procipher" do
+  let(:is_yelled) { Proc.new { |s| s[-1] == '!' } }
+  let(:is_upcase) { Proc.new { |s| s.upcase == s } }
+  let(:contains_a) { Proc.new { |s| s.downcase.include?('a') } }
+  let(:make_question) { Proc.new { |s| s + '???' } }
+  let(:reverse) { Proc.new { |s| s.reverse } }
+  let(:add_smile) { Proc.new { |s| s + ':)' } } 
+
+  it "return a new sentence where each word of the input sentence is changed by a value proc if the original word returns true when passed into the key proc (if an original word returns true for multiple key procs, then only the value proc that appears earliest in the hash should be applied)" do
+    expect(picky_procipher('he said what!',
+      is_yelled => make_question,
+      contains_a => reverse
+    )).to eq("he dias what!???")
+
+    expect(picky_procipher('he said what!',
+      contains_a => reverse,
+      is_yelled => make_question
+    )).to eq("he dias !tahw")
+
+    expect(picky_procipher('he said what!',
+      contains_a => reverse,
+      is_yelled => add_smile
+    )).to eq("he dias !tahw")
+
+    expect(picky_procipher('stop that taxi now',
+      is_upcase => add_smile,
+      is_yelled => reverse,
+      contains_a => make_question
+    )).to eq("stop that??? taxi??? now")
+
+    expect(picky_procipher('STOP that taxi!',
+      is_upcase => add_smile,
+      is_yelled => reverse,
+      contains_a => make_question
+    )).to eq("STOP:) that??? !ixat")
+  end
+end
