@@ -12,3 +12,14 @@ def chain_map(val, procs)
   val
 end
 
+def proc_suffix(str, proc_hash)
+  str.split(' ').map do |word|
+    suffix = ""
+    proc_hash.keys.each do |prc|
+      print prc.call(word)
+      suffix += proc_hash[prc] if prc.call(word)
+    end
+
+    word + suffix
+  end.join(' ')
+end
