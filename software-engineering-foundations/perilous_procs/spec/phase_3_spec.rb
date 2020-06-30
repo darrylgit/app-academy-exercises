@@ -68,3 +68,21 @@ describe "proc_suffix" do
     )).to eq("fooding gladingly rantingly dogo catlyo")   
   end
 end
+
+describe "proctition_platinum" do
+  let(:is_yelled) { Proc.new { |s| s[-1] == '!' } } 
+  let(:is_upcase) { Proc.new { |s| s.upcase == s } } 
+  let(:contains_a) { Proc.new { |s| s.downcase.include?('a') } } 
+  let(:begins_w) { Proc.new { |s| s.downcase[0] == 'w' } } 
+
+  it "return a hash where the keys correspond to the number of procs passed in" do
+    expect(proctition_platinum(['WHO', 'what', 'when!', 'WHERE!', 'how', 'WHY'], is_yelled, contains_a)).to eq({1=>["when!", "WHERE!"], 2=>["what"]})
+    
+    expect(proctition_platinum(['WHO', 'what', 'when!', 'WHERE!', 'how', 'WHY'], is_yelled, is_upcase, contains_a)).to eq({1=>["when!", "WHERE!"], 2=>["WHO", "WHY"], 3=>["what"]})
+    
+    expect(proctition_platinum(['WHO', 'what', 'when!', 'WHERE!', 'how', 'WHY'], is_upcase, is_yelled, contains_a)).to eq({1=>["WHO", "WHERE!", "WHY"], 2=>["when!"], 3=>["what"]})
+    
+    expect(proctition_platinum(['WHO', 'what', 'when!', 'WHERE!', 'how', 'WHY'], begins_w, is_upcase, is_yelled, contains_a)).to eq({1=>["WHO", "what", "when!", "WHERE!", "WHY"], 2=>[], 3=>[], 4=>[]})
+  end
+end
+    
