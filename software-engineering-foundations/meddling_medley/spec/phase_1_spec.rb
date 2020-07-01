@@ -72,3 +72,11 @@ describe "energetic_encoding" do
     expect(energetic_encoding('bike', {})).to eq('????')
   end
 end
+
+describe "uncompress" do 
+  it "returns an 'uncompressed' version of the string where every letter is repeated multiple times given based on the number that appears directly after the letter" do
+    expect(uncompress('a2b4c1')).to eq('aabbbbc')
+    expect(uncompress('b1o2t1')).to eq('boot')
+    expect(uncompress('x3y1x2z4')).to eq('xxxyxxzzzz')
+  end
+end

@@ -57,3 +57,20 @@ def energetic_encoding(str, hash)
 
   str
 end
+
+def uncompress(str)
+  output = ""
+
+  chars = []
+  nums = []
+
+  str.split('').each_with_index { |char, i| i % 2 == 0 ? chars << char : nums << char }
+
+  nums.map! { |num| num.to_i }
+
+  (0...chars.length).each do |idx|
+    nums[idx].times { output += chars[idx] }
+  end
+
+  output 
+end
