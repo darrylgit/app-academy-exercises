@@ -35,3 +35,17 @@ def counted_characters(str)
 
   tallies.select { |k, v| v > 2 }.keys
 end
+
+def triplet_true?(str)
+  letters = str.split('')
+
+  letters.inject(['']) do |acc, val| 
+    if val == acc[-1][-1]
+      acc[-1] += val
+    else
+      acc << val
+    end
+
+    acc
+  end.map { |val| val.length }.max >= 3
+end

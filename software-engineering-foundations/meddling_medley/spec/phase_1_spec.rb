@@ -44,3 +44,13 @@ describe "counted_characters" do
     expect(counted_characters("runtime")).to eq([])
   end
 end
+
+describe "triplet_true?" do
+  it "returns a boolean indicating whether or not the string contains three of the same character consecutively" do
+    expect(triplet_true?('caaabb')).to eq(true)       
+    expect(triplet_true?('terrrrrible')).to eq(true)   
+    expect(triplet_true?('runninggg')).to eq(true)     
+    expect(triplet_true?('bootcamp')).to eq(false)      
+    expect(triplet_true?('e')).to eq(false) 
+  end
+end            
