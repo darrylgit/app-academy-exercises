@@ -27,3 +27,11 @@ def hash_mapped(hash, prc, &block)
   
   new_hash
 end
+
+def counted_characters(str)
+  tallies = Hash.new(0)
+
+  str.each_char { |char| tallies[char] += 1}
+
+  tallies.select { |k, v| v > 2 }.keys
+end

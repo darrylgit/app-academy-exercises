@@ -35,3 +35,12 @@ describe "hash_mapped" do
     expect(hash_mapped({-5=>['q', 'r', 's'], 6=>['w', 'x']}, first) { |n| n * n }).to eq({25=>"q", 36=>"w"})
   end
 end
+
+describe "counted_characters" do
+  it "returns an array containing the characters of the string that appeared more than twice" do
+    expect(counted_characters("that's alright folks")).to eq(["t"])  
+    expect(counted_characters("mississippi")).to eq(["i", "s"])  
+    expect(counted_characters("hot potato soup please")).to eq(["o", "t", " ", "p"])  
+    expect(counted_characters("runtime")).to eq([])
+  end
+end
