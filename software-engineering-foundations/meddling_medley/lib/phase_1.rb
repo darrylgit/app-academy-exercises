@@ -49,3 +49,11 @@ def triplet_true?(str)
     acc
   end.map { |val| val.length }.max >= 3
 end
+
+def energetic_encoding(str, hash)
+  (0...str.length).each do |idx|
+    str[idx] = hash[str[idx]] || '?' if str[idx] != ' '
+  end
+
+  str
+end
