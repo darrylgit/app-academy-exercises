@@ -19,3 +19,11 @@ def sentence_swap(str, hash)
 
   words.join(" ")
 end
+
+def hash_mapped(hash, prc, &block)
+  new_hash = { }
+
+  hash.each { |key, value| new_hash[block.call(key)] = prc.call(value) }
+  
+  new_hash
+end
