@@ -9,3 +9,13 @@ def duos(str)
 
   count 
 end
+
+def sentence_swap(str, hash)
+  words = str.split(" ")
+  
+  words.each_with_index do |word, i|
+    words[i] = hash[word] || word
+  end
+
+  words.join(" ")
+end
