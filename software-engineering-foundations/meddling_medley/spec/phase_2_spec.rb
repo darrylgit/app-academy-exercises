@@ -63,3 +63,12 @@ describe "alternating_vowel" do
   end
 end
 
+describe "silly_talk" do
+  it "makes the sentence into silly talk" do
+    expect(silly_talk('Kids like cats and dogs')).to eq("Kibids likee cabats aband dobogs")
+    expect(silly_talk('Stop that scooter')).to eq("Stobop thabat scobooboteber")
+    expect(silly_talk('They can code')).to eq("Thebey caban codee")
+    expect(silly_talk('He flew to Italy')).to eq("Hee flebew too Ibitabaly")
+  end
+end
+

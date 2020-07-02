@@ -57,3 +57,18 @@ def alternating_vowel(str)
 
   words.join(' ')
 end
+
+def silly_talk(str)
+  words = str.split(' ')
+
+  words.each_with_index do |word, i|
+    if "aeiou".include?(word[-1])
+      words[i] = word + word[-1]
+    else
+      capitalized = word[0] == word[0].upcase
+      words[i] = word.split('').map { |char| "aeiouAEIOU".include?(char.downcase) ? char + "b" + char.downcase : char }.join('')
+    end
+  end
+
+  words.join(' ')
+end
