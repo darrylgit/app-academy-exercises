@@ -72,3 +72,25 @@ def silly_talk(str)
 
   words.join(' ')
 end
+
+def compress(str)
+  chars = []
+  nums = []
+  output = []
+
+  str.each_char.with_index do |char, i|
+    if chars[-1] != char
+      chars << char
+      nums << 1
+    else
+      nums[-1] += 1
+    end
+  end
+
+  (0...chars.length).each do |idx|
+    output << chars[idx]
+    output << nums[idx].to_s
+  end
+
+  output.select { |el| el != "1" }.join('')
+end

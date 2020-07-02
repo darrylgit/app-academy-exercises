@@ -72,3 +72,11 @@ describe "silly_talk" do
   end
 end
 
+describe "compress" do
+  it "returns a 'compressed' version of the string" do
+    expect(compress('aabbbbc')).to eq("a2b4c")
+    expect(compress('boot')).to eq("bo2t")
+    expect(compress('xxxyxxzzzz')).to eq("x3yx2z4")
+  end
+end
+
