@@ -64,9 +64,7 @@ def uncompress(str)
   chars = []
   nums = []
 
-  str.split('').each_with_index { |char, i| i % 2 == 0 ? chars << char : nums << char }
-
-  nums.map! { |num| num.to_i }
+  str.split('').each_with_index { |char, i| i % 2 == 0 ? chars << char : nums << char.to_i }
 
   (0...chars.length).each do |idx|
     nums[idx].times { output += chars[idx] }
