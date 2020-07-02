@@ -41,3 +41,7 @@ def reverberate(str)
 
   words.join(' ')
 end
+
+def disjunct_select(arr, *prcs)
+  arr.select { |el| prcs.map { |prc| prc.call(el) }.any? }
+end
