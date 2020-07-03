@@ -50,7 +50,7 @@ def alternating_vowel(str)
   words = str.split(' ')
 
   words.each_with_index do |word, i|
-    vowel_idx = i % 2 == 0 ? word.index(/[aeiou]/) : word.rindex(/[aeiou]/)
+    vowel_idx = i.even? ? word.index(/[aeiou]/) : word.rindex(/[aeiou]/)
 
     vowel_idx && words[i] = word[0...vowel_idx] + word[vowel_idx + 1..-1]
   end

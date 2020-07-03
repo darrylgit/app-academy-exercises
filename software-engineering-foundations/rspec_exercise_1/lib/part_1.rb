@@ -17,5 +17,5 @@ def yell(str)
 end
 
 def alternating_case(str)
-  str.split.map.with_index { |word, i| i % 2 == 0 ? word.upcase  : word.downcase }.join(' ')
+  str.split.map.with_index { |word, i| i.even? ? word.upcase  : word.downcase }.join(' ')
 end
