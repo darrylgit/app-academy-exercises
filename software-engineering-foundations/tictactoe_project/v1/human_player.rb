@@ -18,6 +18,4 @@ class HumanPlayer
 
     [position_input[0].to_i, position_input[2].to_i]
   end
-
-  
 end
