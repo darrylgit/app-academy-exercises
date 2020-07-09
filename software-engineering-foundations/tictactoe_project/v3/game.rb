@@ -1,22 +1,24 @@
 require_relative "board"
 require_relative "human_player"
+require_relative "computer_player"
 
 class Game
-  def initialize(board_size, *marks)
-    @players = marks.map { |mark| HumanPlayer.new(mark) }
+  def initialize(board_size, marks)
+    @players = []
+    marks.each { |mark, is_computer| @players << (is_computer ? ComputerPlayer.new(mark) : HumanPlayer.new(mark)) }
     @board = Board.new(board_size)
     @current_player = @players[0]
   end
 
   def switch_turn
-    @current_player = @players.rotate!(-1)[0]
+    @current_player = @players.rotate![0]
   end
 
   def play 
     while @board.empty_positions?
       @board.print
 
-      turn_position = @current_player.get_position
+      turn_position = @current_player.get_position(@board.legal_positions)
 
       @board.place_mark(turn_position, @current_player.mark)
 

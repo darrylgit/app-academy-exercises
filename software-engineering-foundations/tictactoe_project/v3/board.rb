@@ -55,7 +55,7 @@ class Board
     output = []
 
     # Convert each square into its position, then shovel into output if empty
-    positions = @grid.each_with_index { |row, i| row.each_with_index { |square, j| output << [i, j] if self.empty?([i, j]) } }
+    @grid.each_with_index { |row, i| row.each_with_index { |square, j| output << [i, j] if self.empty?([i, j]) } }
 
     output
   end
