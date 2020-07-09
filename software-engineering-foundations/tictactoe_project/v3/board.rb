@@ -54,11 +54,8 @@ class Board
   def legal_positions
     output = []
 
-    # Convert board into its positions
-    positions = @grid.each_with_index.map { |row, i| row.each_with_index.map { |square, j| [i, j] } }
-
-    # Shovel empty positions into output
-    positions.each { |row| row.each { |square| output << square if self.empty?(square) } }
+    # Convert each square into its position, then shovel into output if empty
+    positions = @grid.each_with_index { |row, i| row.each_with_index { |square, j| output << [i, j] if self.empty?([i, j]) } }
 
     output
   end
