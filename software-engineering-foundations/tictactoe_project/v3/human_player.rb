@@ -17,11 +17,8 @@ class HumanPlayer
 
     got_position = [position_input[0].to_i, position_input[2].to_i]
 
-    position_legal = false
-
-    legal_positions.each { |position| position_legal = true if position[0] == got_position[0] && position[1] == got_position[1] }
-
-    return got_position if position_legal
+    # Compare user response to each legal position, return if a match exists
+    legal_positions.each { |position| return got_position if position[0] == got_position[0] && position[1] == got_position[1] }
 
     puts "#{got_position} is not a legal position"
     return get_position(legal_positions)
