@@ -42,4 +42,60 @@ class List
   def priority
     return @items[0]
   end
+
+  def print 
+    hr = "-" * 42
+    puts hr
+    puts @label.rjust(21 + label.length/2)
+    puts hr
+    puts "Index | Item                 | Deadline"
+    puts hr
+    @items.each_with_index do |item, i|
+      index = i.to_s.ljust(6)
+      title = item.title.ljust(21)
+      deadline = item.deadline
+
+      puts "#{index}| #{title}| #{deadline}"
+    end
+    puts hr
+  end
+
+  def print_full_item(index)
+    hr = "-" * 42
+    item = self[index]
+    center_space = " " * (42 - item.title.length - item.deadline.length)
+
+    puts hr
+    puts "#{item.title}#{center_space}#{item.deadline}"
+    puts "#{item.description}"
+    puts hr
+  end
+
+  def print_priority
+    self.print_full_item(0)
+  end
+
+  def up(index, amount = 1)
+    return false if !self.valid_index?(index)
+
+    while amount > 0 && index > 0
+      self.swap(index, index - 1)
+      amount -= 1
+      index -= 1
+    end
+
+    true
+  end
+
+  def down(index, amount = 1)
+    return false if !self.valid_index?(index)
+
+    while amount > 0 && index < self.size
+      self.swap(index, index + 1)
+      amount -= 1
+      index += 1
+    end
+
+    true
+  end
 end
