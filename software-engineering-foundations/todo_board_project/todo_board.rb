@@ -12,7 +12,7 @@ class TodoBoard
 
     case cmd
     when 'mktodo'
-      @list.add_item(*args)
+      @list.add_item(args[0], args[1], args[2..-1].join(" "))
     when 'up'
       args.map! { |arg| arg.to_i }
       @list.up(*args)
@@ -38,5 +38,12 @@ class TodoBoard
     end
 
     true
+  end
+
+  def run
+    until !self.get_command
+    end
+
+    "Program exited"
   end
 end
