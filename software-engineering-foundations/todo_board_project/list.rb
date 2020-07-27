@@ -62,13 +62,15 @@ class List
   end
 
   def print_full_item(index)
-    hr = "-" * 50
     item = self[index]
+    return false if item == nil
+    
+    hr = "-" * 50
     done = item.done ? "[✓]" : "[ ]"
     right_info = "#{item.deadline.length}   #{done}"
   
     puts hr
-    puts "#{item.title}#{right_info.rjust(50 - @item.title.length)}"
+    puts "#{item.title}#{right_info.rjust(50 - item.title.length)}"
     puts "#{item.description}"
     puts hr
   end
@@ -113,5 +115,9 @@ class List
     return false if @items[index] == nil
 
     @items.delete_at(index)
+  end
+
+  def purge
+    @items.select! { |item| !item.done }
   end
 end
