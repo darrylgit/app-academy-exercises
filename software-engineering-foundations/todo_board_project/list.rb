@@ -108,4 +108,10 @@ class List
   def toggle_item(index)
     @items[index].toggle
   end
+
+  def remove_item(index)
+    return false if @items[index] == nil
+
+    @items.delete_at(index)
+  end
 end
