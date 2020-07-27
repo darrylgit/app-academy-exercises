@@ -44,29 +44,31 @@ class List
   end
 
   def print 
-    hr = "-" * 42
+    hr = "-" * 50
     puts hr
-    puts @label.rjust(21 + label.length/2)
+    puts @label.rjust(25 + label.length/2)
     puts hr
-    puts "Index | Item                 | Deadline"
+    puts "Index | Item                 | Deadline | Done "
     puts hr
     @items.each_with_index do |item, i|
       index = i.to_s.ljust(6)
       title = item.title.ljust(21)
       deadline = item.deadline
+      done = item.done ? "[✓]" : "[ ]"
 
-      puts "#{index}| #{title}| #{deadline}"
+      puts "#{index}| #{title}| #{deadline} | #{done}"
     end
     puts hr
   end
 
   def print_full_item(index)
-    hr = "-" * 42
+    hr = "-" * 50
     item = self[index]
-    center_space = " " * (42 - item.title.length - item.deadline.length)
-
+    done = item.done ? "[✓]" : "[ ]"
+    right_info = "#{item.deadline.length}   #{done}"
+  
     puts hr
-    puts "#{item.title}#{center_space}#{item.deadline}"
+    puts "#{item.title}#{right_info.rjust(50 - @item.title.length)}"
     puts "#{item.description}"
     puts hr
   end
