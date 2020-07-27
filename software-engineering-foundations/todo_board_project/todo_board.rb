@@ -27,10 +27,9 @@ class TodoBoard
     when 'priority'
       @list.print_priority
     when 'print'
-      puts "args.length is #{args.length}"
-      print args
-      print "\n"
       args.length > 0 ? @list.print_full_item(args[0].to_i) : @list.print
+    when 'toggle'
+      @list.toggle(args[1].to_i)
     when "quit"
       return false
     else 
