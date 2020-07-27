@@ -11,19 +11,24 @@ class Item
   end
 
   attr_accessor :title, :description
-  attr_reader :deadline
+  attr_reader :deadline, :done
 
   def initialize(title, deadline, description)
     raise "Invalid date" if !self.class.valid_date?(deadline)
 
-    @title = title;
-    @deadline = deadline;
+    @title = title
+    @deadline = deadline
     @description = description
+    @done = false
   end
 
   def deadline=(new_deadline)
     raise "Invalid date" if !self.class.valid_date?(new_deadline)
 
     @deadline = new_deadline
+  end
+
+  def toggle
+    @done = !@done
   end
 end
