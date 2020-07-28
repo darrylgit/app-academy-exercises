@@ -3,37 +3,44 @@ require_relative "list"
 class TodoBoard
 
   def initialize(label = "no label")
-    @list = List.new(label)
+    @board = Hash.new
   end
 
   def get_command
     print "\nEnter a command: "
-    cmd, *args = gets.chomp.split(' ')
+    cmd, list, *args = gets.chomp.split(' ')
 
     case cmd
+    when 'mklist'
+      @board[list] = List.new(list)
+    when 'ls'
+      @board.each_key { |label| puts label }
+    when 'showall'
+      @board.each_value { |list| list.print }
     when 'mktodo'
-      @list.add_item(args[0], args[1], args[2..-1].join(" "))
+      label, deadline, *description = args
+      @board[list].add_item(label, deadline, description.join(" "))
     when 'up'
       args.map! { |arg| arg.to_i }
-      @list.up(*args)
+      @board[list].up(*args)
     when 'down'
       args.map! { |arg| arg.to_i }
-      @list.down(*args)
+      @board[list].down(*args)
     when 'swap'
       args.map! { |arg| arg.to_i }
-      @list.swap(*args)
+      @board[list].swap(*args)
     when 'sort'
-      @list.sort_by_date!
+      @board[list].sort_by_date!
     when 'priority'
-      @list.print_priority
+      @board[list].print_priority
     when 'print'
-      args.length > 0 ? @list.print_full_item(args[0].to_i) : @list.print
+      args.length > 0 ? @board[list].print_full_item(args[0].to_i) : @board[list].print
     when 'toggle'
-      @list.toggle_item(args[0].to_i)
+      @board[list].toggle_item(args[0].to_i)
     when 'rm'
-      @list.remove_item(args[0].to_i)
+      @board[list].remove_item(args[0].to_i)
     when 'purge'
-      @list.purge
+      @board[list].purge
     when "quit"
       return false
     else 
@@ -50,3 +57,7 @@ class TodoBoard
     "Program exited"
   end
 end
+
+board = TodoBoard.new
+
+board.run
