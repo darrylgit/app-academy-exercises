@@ -58,6 +58,6 @@ class TodoBoard
   end
 end
 
-board = TodoBoard.new
+new_board = TodoBoard.new
 
-board.run
+new_board.run
