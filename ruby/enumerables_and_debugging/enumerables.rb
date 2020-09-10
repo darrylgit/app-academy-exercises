@@ -8,4 +8,14 @@ class Array
 
     self
   end
+
+  def my_select(&prc)
+    output = []
+
+    self.my_each do |el|
+      output << el if prc.call(el)
+    end
+
+    output
+  end
 end
