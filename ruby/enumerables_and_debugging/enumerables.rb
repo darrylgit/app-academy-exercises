@@ -18,4 +18,14 @@ class Array
 
     output
   end
+
+  def my_reject(&prc)
+    output = []
+
+    self.my_each do |el|
+      output << el if !prc.call(el)
+    end
+
+    output
+  end
 end
