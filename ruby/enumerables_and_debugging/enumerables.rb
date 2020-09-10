@@ -42,18 +42,16 @@ class Array
   end
 
   def my_flatten()
-    return self if self.length == 1 && !self[0].is_a?(Array)
+    first_element, *other_elements = self
     
-    first_element = self[0]
     if first_element.is_a?(Array)
       first_element = first_element.my_flatten
     end
 
-    elements_after_first = self[1..-1]
-    if elements_after_first.is_a?(Array)
-      elements_after_first = elements_after_first.my_flatten
+    if other_elements.is_a?(Array) && other_elements.length > 0
+      other_elements = other_elements.my_flatten
     end
 
-    [*first_element, *elements_after_first]
+    [*first_element, *other_elements]
   end
 end
