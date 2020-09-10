@@ -28,4 +28,9 @@ class Array
 
     output
   end
+
+  def my_any?(&prc)
+    self.my_each { |el| return true if prc.call(el)}
+    false
+  end
 end
