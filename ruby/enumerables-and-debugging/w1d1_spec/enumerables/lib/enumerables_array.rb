@@ -36,3 +36,19 @@ class Array
     [*self].bubble_sort!(&prc)
   end
 end
+
+def substrings(string)
+  substrs = []
+
+  (0..string.length).each do |idx1|
+      (1..string.length).each do |idx2|
+          substrs << string[idx1...idx2] if idx1 < idx2
+      end
+  end
+
+  substrs
+end
+
+def subwords(string, dictionary)
+  substrings(string).select { |substr| dictionary.include?(substr) }.uniq
+end
