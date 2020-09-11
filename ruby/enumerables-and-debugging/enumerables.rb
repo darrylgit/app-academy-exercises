@@ -105,4 +105,16 @@ class Array
 
     output
   end
+
+  def my_reverse
+    output = []
+
+    i = self.length - 1
+    while i >= 0
+      output << self[i]
+      i -= 1
+    end
+
+    output
+  end
 end
