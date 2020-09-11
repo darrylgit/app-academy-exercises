@@ -92,4 +92,17 @@ class Array
   
     output
   end
+
+  def my_join(separator = '')
+    output = ''
+
+    self.each_with_index do |el, i|
+      output << el
+      if i < self.length - 1
+        output << separator
+      end
+    end
+
+    output
+  end
 end
