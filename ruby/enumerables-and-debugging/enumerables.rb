@@ -70,4 +70,26 @@ class Array
 
     output
   end
+
+  def my_rotate(amount = 1)
+    # Make new array 
+    output = [*self]
+
+    # No unnecessary rotations
+    amount = amount % self.length
+
+    if amount > 0
+      while amount > 0
+        output.push(output.shift)
+        amount -= 1
+      end
+    else 
+      while amount < 0
+        output.unshift(output.pop)
+        amount += 1
+      end
+    end
+  
+    output
+  end
 end
