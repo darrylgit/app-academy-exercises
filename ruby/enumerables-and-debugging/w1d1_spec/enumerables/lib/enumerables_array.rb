@@ -13,7 +13,7 @@ def factors(num)
 end
 
 class Array
-  def bubble_sort(&prc)
+  def bubble_sort!(&prc)
     prc ||= Proc.new { |el, next_el| el <=> next_el }
 
     sorted = false
@@ -30,5 +30,9 @@ class Array
     end
 
     self
+  end
+
+  def bubble_sort(&prc)
+    [*self].bubble_sort!(&prc)
   end
 end
