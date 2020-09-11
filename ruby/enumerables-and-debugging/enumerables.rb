@@ -54,4 +54,20 @@ class Array
 
     [*first_element, *other_elements]
   end
+
+  def my_zip(*arrs)
+    output = Array.new(self.length) { [] }
+
+    [self, *arrs].each do |arr|
+      while arr.length < self.length
+        arr << nil
+      end
+
+      arr.each_with_index do |el, i|
+        output[i] << el if i < output.length
+      end
+    end
+
+    output
+  end
 end
