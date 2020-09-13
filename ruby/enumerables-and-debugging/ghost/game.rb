@@ -12,13 +12,13 @@ class Game
     # Load words into dictionary set
     @dictionary = Set.new([])
 
-    @file = File.open("dictionary.txt", "r")
+    file = File.open("dictionary.txt", "r")
 
-    @file.each_line do |line|
+    file.each_line do |line|
       @dictionary.add(line.chomp)
     end
 
-    @file.close
+    file.close
   end
 
   def play_round
@@ -37,8 +37,18 @@ class Game
   end
 
   def take_turn(player)
+    puts "Enter a letter:"
+    guess = player.guess.downcase
+
+    while !self.valid_play?(guess)
+      puts "ERROR! Must enter a letter:"
+      guess = player.guess.downcase
+    end
+
+    puts "Hooray! Your guess is #{guess}"
   end
 
   def valid_play?(str)
+    str.length == 1 && 'abcdefghijklmnopqrstuvwxyz'.include?(str)
   end
 end
