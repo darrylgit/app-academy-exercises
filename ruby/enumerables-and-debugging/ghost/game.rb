@@ -1,6 +1,6 @@
 require('set')
 
-require './player.rb'
+require_relative 'player.rb'
 
 class Game
   attr_reader :players
@@ -22,6 +22,7 @@ class Game
   end
 
   def play_round
+    
   end
 
   def current_player
@@ -38,17 +39,23 @@ class Game
 
   def take_turn(player)
     puts "Enter a letter:"
-    guess = player.guess.downcase
+    guess = player.guess
 
     while !self.valid_play?(guess)
-      puts "ERROR! Must enter a letter:"
-      guess = player.guess.downcase
+      player.alert_invalid_guess
+      guess = player.guess
     end
 
-    puts "Hooray! Your guess is #{guess}"
+    @fragment += guess
   end
 
   def valid_play?(str)
-    str.length == 1 && 'abcdefghijklmnopqrstuvwxyz'.include?(str)
+    # Check that input is a single letter
+    return false if str.length != 1 || !'abcdefghijklmnopqrstuvwxyz'.include?(str)
+
+    #Check that possible words exist after adding guess
+    @dictionary.each { |word| return true if word.match(/^#{Regexp.quote(@fragment + str)}/)}
+
+    false
   end
 end
