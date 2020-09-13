@@ -4,6 +4,7 @@ require_relative 'player.rb'
 
 class Game
   attr_reader :players
+
   def initialize(*players)
     @fragment = ''
 
@@ -22,7 +23,13 @@ class Game
   end
 
   def play_round
-    
+    until @dictionary.include?(@fragment)
+      self.take_turn(self.current_player)
+      self.next_player!
+    end
+
+    puts "Ay bendito! #{self.previous_player.name} has spelled \"#{@fragment}\" and lost this round."
+    @fragment = ''
   end
 
   def current_player
@@ -38,7 +45,8 @@ class Game
   end
 
   def take_turn(player)
-    puts "Enter a letter:"
+    puts "Current fragment: #{@fragment.upcase}"
+    puts "#{player.name}, enter a letter:"
     guess = player.guess
 
     while !self.valid_play?(guess)
@@ -47,6 +55,8 @@ class Game
     end
 
     @fragment += guess
+
+    puts "Letter accepted!"
   end
 
   def valid_play?(str)
