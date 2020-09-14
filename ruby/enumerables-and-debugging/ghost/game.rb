@@ -10,6 +10,8 @@ class Game
 
     @players = players.map { |name| Player.new(name) }
 
+    @losses = Hash.new('')
+
     # Load words into dictionary set
     @dictionary = Set.new([])
 
@@ -30,6 +32,14 @@ class Game
 
     puts "Ay bendito! #{self.previous_player.name} has spelled \"#{@fragment}\" and lost this round."
     @fragment = ''
+    self.record(self.previous_player)
+    puts @losses
+  end
+
+  def record(player)
+    if @losses[player] != 'GHOST'
+      @losses[player] = 'GHOST'[0...@losses[player].length + 1]
+    end
   end
 
   def current_player
