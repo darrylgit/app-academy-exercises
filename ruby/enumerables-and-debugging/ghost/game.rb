@@ -37,8 +37,6 @@ class Game
         end
       end
     end
-
-    # loser = @losses.key('GHOST').name
   end
 
   def display_standings
@@ -104,4 +102,9 @@ class Game
 
     false
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  game = Game.new('Monica', 'Erica', 'Rita', 'Tina', 'Sandra', 'Mary', 'Jessica')
+  game.run
 end
