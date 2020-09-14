@@ -25,16 +25,20 @@ class Game
   end
 
   def run
-    until @losses.has_value?('GHOST')
+    until 
       
       self.play_round
       self.display_standings
 
+      [*@players].each do |player|
+        if @losses[player] == 'GHOST'
+          puts "OMG! #{player.name} has spelled GHOST and lost the game."
+          @players.delete(player)
+        end
+      end
     end
 
-    loser = @losses.key('GHOST').name
-    
-    "OMG! #{loser} has spelled GHOST and lost the game."
+    # loser = @losses.key('GHOST').name
   end
 
   def display_standings
