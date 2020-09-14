@@ -24,6 +24,26 @@ class Game
     file.close
   end
 
+  def run
+    until @losses.has_value?('GHOST')
+      
+      self.play_round
+      self.display_standings
+
+    end
+
+    loser = @losses.key('GHOST').name
+    
+    "OMG! #{loser} has spelled GHOST and lost the game."
+  end
+
+  def display_standings
+    puts "--------------------------"
+    puts "STANDINGS:"
+    @losses.each { |player, loss| puts "#{player.name}: #{loss}"}
+    puts "--------------------------"
+  end
+
   def play_round
     until @dictionary.include?(@fragment)
       self.take_turn(self.current_player)
@@ -33,13 +53,14 @@ class Game
     puts "Ay bendito! #{self.previous_player.name} has spelled \"#{@fragment}\" and lost this round."
     @fragment = ''
     self.record(self.previous_player)
-    puts @losses
   end
 
   def record(player)
     if @losses[player] != 'GHOST'
       @losses[player] = 'GHOST'[0...@losses[player].length + 1]
     end
+
+    puts ''
   end
 
   def current_player
@@ -55,7 +76,7 @@ class Game
   end
 
   def take_turn(player)
-    puts "Current fragment: #{@fragment.upcase}"
+    puts "Current fragment: #{@fragment.upcase}" if @fragment.length > 0
     puts "#{player.name}, enter a letter:"
     guess = player.guess
 
