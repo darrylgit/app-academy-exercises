@@ -63,8 +63,9 @@ class Game
     # Check that input is a single letter
     return false if str.length != 1 || !'abcdefghijklmnopqrstuvwxyz'.include?(str)
 
-    #Check that possible words exist after adding guess
-    @dictionary.each { |word| return true if word.match(/^#{Regexp.quote(@fragment + str)}/)}
+    # Check that possible words exist after adding guess
+    # @dictionary.each { |word| return true if word.match(/^#{Regexp.quote(@fragment + str)}/)}
+    @dictionary.each { |word| return true if word.start_with?(@fragment + str)}
 
     false
   end
