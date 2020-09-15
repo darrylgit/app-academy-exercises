@@ -9,7 +9,7 @@ class Card
   end
 
   def display
-    @revealed ? self.to_s : ''
+    @revealed ? self.to_s : ' '
   end
 
   def to_s

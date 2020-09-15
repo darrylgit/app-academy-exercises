@@ -1,6 +1,11 @@
 require_relative 'card.rb'
 
 class Board
+  # Class method(s)
+  def self.print_grid(grid)
+    
+  end
+
 
   def initialize(size = 4)
     raise 'Max board size is 10' if size > 10
@@ -41,11 +46,13 @@ class Board
   end
 
   def populate
+    # Generate symbols for game
     alphabet_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     alphabet = alphabet_upper + alphabet_upper.downcase
     all_symbols = alphabet.split('').map(&:to_sym)
     symbols_for_game = all_symbols.sample((@grid.length ** 2) / 2)
     
+    # Populate empty squares at random, starting with first symbol in array and iteratively shifting off until none are left
     until symbols_for_game.empty?
       2.times do
         square = self.empty_squares.sample
@@ -54,6 +61,20 @@ class Board
       
       symbols_for_game.shift
     end
+  end
+
+  def render
+    header = " "
+    (0...@grid.length).each { |i| header += " " + i.to_s }
+    puts header
+
+    @grid.each_with_index do |row, i|
+      row_to_print = i.to_s
+      row.each { |card| row_to_print += " " + card.display }
+      puts row_to_print
+    end
+
+    nil
   end
 
 end
