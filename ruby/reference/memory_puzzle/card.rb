@@ -1,6 +1,6 @@
 class Card
-  def initialize
-    @value = "L"
+  def initialize(value)
+    @value = value
     @revealed = false
   end
 
@@ -9,7 +9,11 @@ class Card
   end
 
   def display
-    @revealed ? @value : ''
+    @revealed ? self.to_s : ''
+  end
+
+  def to_s
+    @value.to_s
   end
 
   def hide
