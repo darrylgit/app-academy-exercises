@@ -1,5 +1,7 @@
 require_relative 'board.rb'
 
+require 'byebug'
+
 class Game
 
   def initialize(size = 4)
@@ -18,25 +20,57 @@ class Game
   def prompt
     # Get user input
     puts "Guess time! Enter some coordinates, please."
-    guess = gets.chomp
-    guess_pos = guess.split(' ').map(&:to_i)
 
-    # Validate
-    until valid_guess?(guess_pos)
-      puts "ERROR: Guess must be two integers within the bounds of the board size."
+    guess_pos = []
+
+    loop do
+      
       guess = gets.chomp
       guess_pos = guess.split(' ').map(&:to_i)
+
+    break if self.valid_guess?(guess_pos)
+
     end
+
+    self.set_previous_guess(guess_pos)
 
     guess_pos
   end
 
+  def set_previous_guess(guess)
+    if @previous_guess
+      @previous_guess = nil
+    else
+      @previous_guess = guess
+    end
+  end
+
   def valid_guess?(pos)
     # Check length
-    return false if pos.length != 2
+    if pos.length != 2
+      puts "ERROR: Guess must be two space-separated integers."
+      return false
+    end
+
+    # Check against previous guess
+    if @previous_guess
+      prev_row, prev_col = @previous_guess
+      row, col = pos
+
+      if row == prev_row && col == prev_col
+        puts "ERROR: Guess cannot be the same as the previous guess." 
+        return false 
+      end
+    end
 
     # Check that coordinate values are neither too big nor too small
-    pos.all? { |val| val >= 0 && val <= @size }
+    valid_range = pos.all? { |val| val >= 0 && val <= @size }
+    if !valid_range
+      puts "ERROR: Coordinates must be within bounds of board."
+      return false
+    end
+
+    true
   end
 
   def over?
