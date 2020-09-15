@@ -1,11 +1,7 @@
 require_relative 'card.rb'
 
 class Board
-  # Class method(s)
-  def self.print_grid(grid)
-    
-  end
-
+  attr_reader :size
 
   def initialize(size)
     raise 'Max board size is 10' if size > 10
@@ -15,6 +11,7 @@ class Board
     end
 
     @grid = Array.new(size) { Array.new(size) }
+    @size = size
   end
 
   def [](coordinates)
