@@ -7,7 +7,7 @@ class Board
   end
 
 
-  def initialize(size = 4)
+  def initialize(size)
     raise 'Max board size is 10' if size > 10
     if size % 2 == 1
       size += 1
