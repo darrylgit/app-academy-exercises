@@ -65,6 +65,7 @@ class Board
 
   def render
     raise "Cannot render unpopulated board. Did you run #populate?" if !self.board_is_full?
+    puts "-" * 2 * (@grid.length + 1) 
     header = " "
     (0...@grid.length).each { |i| header += " " + i.to_s }
     puts header
@@ -74,6 +75,8 @@ class Board
       row.each { |card| row_to_print += " " + card.display }
       puts row_to_print
     end
+
+    puts "-" * 2 * (@grid.length + 1) 
 
     nil
   end
@@ -87,5 +90,10 @@ class Board
     card = self[pos]
     card.reveal
     card.value
+  end
+
+  def hide(pos)
+    card = self[pos]
+    card.hide
   end
 end

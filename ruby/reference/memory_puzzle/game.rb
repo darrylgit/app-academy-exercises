@@ -6,20 +6,47 @@ class Game
 
   def initialize(size = 4)
     @previous_guess = nil
+    # @revealed_value = nil
     @size = size
     @board = Board.new(size)
   end
 
   def play
-    until self.over?
-      board.render
+    @board.populate
+    @board.render
 
+    until self.over?
+      guess_pos = self.prompt
+
+      # Check against previous guess
+      if @previous_guess
+        if @board.reveal(@previous_guess) == @board.reveal(guess_pos)
+          @board.render
+          puts "It's a match!!!"
+        else
+          @board.render
+          puts "No match."
+          @board.hide(@previous_guess)
+          @board.hide(guess_pos)
+          sleep(2)
+          system("clear")
+          @board.render
+        end
+      else
+        @board.reveal(guess_pos)
+        @board.render
+      end
+    
+
+      self.set_previous_guess(guess_pos)
     end
+
+    "You win!!!"
   end
 
   def prompt
     # Get user input
-    puts "Guess time! Enter some coordinates, please."
+    @previous_guess ? (puts "Now enter a second set of coordinates.") : (puts "Guess time! Enter some coordinates, please.")
 
     guess_pos = []
 
@@ -31,8 +58,6 @@ class Game
     break if self.valid_guess?(guess_pos)
 
     end
-
-    self.set_previous_guess(guess_pos)
 
     guess_pos
   end
@@ -63,6 +88,12 @@ class Game
       end
     end
 
+    # Check that card is not already revealed
+    if @board[pos].revealed
+      puts "ERROR: This card has already been revealed."
+      return false
+    end
+
     # Check that coordinate values are neither too big nor too small
     valid_range = pos.all? { |val| val >= 0 && val <= @size }
     if !valid_range
@@ -74,6 +105,6 @@ class Game
   end
 
   def over?
-    board.won?
+    @board.won?
   end
 end

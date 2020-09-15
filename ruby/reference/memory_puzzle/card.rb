@@ -1,6 +1,6 @@
 class Card
-  attr_reader :value
-  
+  attr_reader :value, :revealed
+
   def initialize(value)
     @value = value
     @revealed = false
