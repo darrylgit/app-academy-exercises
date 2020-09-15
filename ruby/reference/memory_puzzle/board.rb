@@ -28,9 +28,9 @@ class Board
     @grid[row][col] = value
   end
 
-  def board_is_empty?
-    @grid.flatten.each { |square| return true if square == nil }
-    false
+  def board_is_full?
+    @grid.flatten.each { |square| return false if square == nil }
+    true
   end
 
   def empty_squares
@@ -64,6 +64,7 @@ class Board
   end
 
   def render
+    raise "Cannot render unpopulated board. Did you run #populate?" if !self.board_is_full?
     header = " "
     (0...@grid.length).each { |i| header += " " + i.to_s }
     puts header
@@ -77,4 +78,14 @@ class Board
     nil
   end
 
+  def won?
+    @grid.flatten.each { |card| return false if !card.revealed }
+    true
+  end
+
+  def reveal(pos)
+    card = self[pos]
+    card.reveal
+    card.value
+  end
 end
