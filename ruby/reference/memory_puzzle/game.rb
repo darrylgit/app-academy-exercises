@@ -10,7 +10,7 @@ class Game
     @previous_guess = nil
     @size = size
     @board = Board.new(size)
-    @players = HumanPlayer
+    @player = HumanPlayer
   end
 
   def play
@@ -29,6 +29,7 @@ class Game
       @board.reveal(guess_pos)
       @board.render
       
+      # Check against previous guess
       if @board.reveal(@previous_guess) == @board.reveal(guess_pos)
         puts "It's a match!!!"
       else
@@ -44,6 +45,8 @@ class Game
 
       self.set_previous_guess(guess_pos)
 
+      # Switch players
+      @player = @player == HumanPlayer ? ComputerPlayer : HumanPlayer
     end
 
     "You win!!!"
