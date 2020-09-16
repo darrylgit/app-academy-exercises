@@ -1,5 +1,6 @@
 require_relative 'board.rb'
 require_relative 'human_player.rb'
+require_relative 'computer_player.rb'
 
 require 'byebug'
 
@@ -7,9 +8,9 @@ class Game
 
   def initialize(size = 4)
     @previous_guess = nil
-    # @revealed_value = nil
     @size = size
     @board = Board.new(size)
+    @players = HumanPlayer
   end
 
   def play
@@ -17,31 +18,32 @@ class Game
     @board.render
 
     until self.over?
-      guess_pos = HumanPlayer.prompt(@previous_guess, @board)
+      # First guess
+      guess_pos = @player.prompt(@previous_guess, @board)
+      @board.reveal(guess_pos)
+      @board.render
+      self.set_previous_guess(guess_pos)
 
-      # Check against previous guess
-      if @previous_guess
-        if @board.reveal(@previous_guess) == @board.reveal(guess_pos)
-          @board.render
-          puts "It's a match!!!"
-        else
-          @board.render
-          puts "No match."
-
-          sleep(2)
-          system("clear")
-          
-          @board.hide(@previous_guess)
-          @board.hide(guess_pos)
-          @board.render
-        end
+      # Second guess
+      guess_pos = @player.prompt(@previous_guess, @board)
+      @board.reveal(guess_pos)
+      @board.render
+      
+      if @board.reveal(@previous_guess) == @board.reveal(guess_pos)
+        puts "It's a match!!!"
       else
-        @board.reveal(guess_pos)
+        puts "No match."
+
+        sleep(2)
+        system("clear")
+        
+        @board.hide(@previous_guess)
+        @board.hide(guess_pos)
         @board.render
       end
-    
 
       self.set_previous_guess(guess_pos)
+
     end
 
     "You win!!!"

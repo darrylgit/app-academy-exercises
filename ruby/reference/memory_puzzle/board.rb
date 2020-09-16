@@ -61,7 +61,8 @@ class Board
   end
 
   def render
-    raise "Cannot render unpopulated board. Did you run #populate?" if !self.board_is_full?
+    self.board.populate if !self.board_is_full?
+    
     puts "-" * 2 * (@grid.length + 1) 
     header = " "
     (0...@grid.length).each { |i| header += " " + i.to_s }

@@ -50,4 +50,8 @@ class HumanPlayer
 
     true
   end
+
+  def self.receive_revealed_card(val, pos)
+    # Dummy method
+  end
 end
