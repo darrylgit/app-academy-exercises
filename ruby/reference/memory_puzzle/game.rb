@@ -9,6 +9,14 @@ class Game
 
   def initialize(size = 4)
     @previous_guess = nil
+
+    size = size.to_i
+    raise 'Max board size is 10' if size > 10
+    if size % 2 == 1
+      size += 1
+      puts "Size must be an even number. Let me round that up to #{size.to_i} for you."
+    end
+
     @size = size
     @board = Board.new(size)
     @human_player = HumanPlayer.new
@@ -61,7 +69,15 @@ class Game
       @player = @player == @human_player ? @computer_player : @human_player
     end
 
-    "You win!!!"
+    # Determine winner
+    case win_status = @computer_player.matched_cards.keys.length <=> @size / 4
+    when -1 
+      return "You win!!!"
+    when 0 
+      return "Draw"
+    when 1 
+      return "You lose"
+    end
   end
 
   def set_previous_guess(guess)

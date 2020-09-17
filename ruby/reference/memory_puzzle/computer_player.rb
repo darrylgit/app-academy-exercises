@@ -1,13 +1,14 @@
 require 'byebug'
 
 class ComputerPlayer
+  attr_reader :matched_cards
+
   def initialize
     @matched_cards = {}
     @known_cards = Hash.new { |h, k| h[k] = [] }
   end
 
   def prompt(prev_guess, board)
-    debugger
     unrevealed_squares = board.unrevealed_squares
 
     # If no previous guess
