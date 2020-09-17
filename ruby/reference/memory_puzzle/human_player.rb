@@ -1,5 +1,5 @@
 class HumanPlayer
-  def self.prompt(prev_guess, board)
+  def prompt(prev_guess, board)
     # Get user input
     prev_guess ? (puts "Now enter a second set of coordinates.") : (puts "Guess time! Enter some coordinates, please.")
 
@@ -17,7 +17,7 @@ class HumanPlayer
     guess_pos
   end
 
-  def self.valid_guess?(pos, prev_guess, board)
+  def valid_guess?(pos, prev_guess, board)
     # Check length
     if pos.length != 2
       puts "ERROR: Guess must be two space-separated integers."
@@ -51,7 +51,11 @@ class HumanPlayer
     true
   end
 
-  def self.receive_revealed_card(val, pos)
+  def receive_revealed_card(val, pos)
+    # Dummy method
+  end
+
+  def receive_match(val, *positions)
     # Dummy method
   end
 end

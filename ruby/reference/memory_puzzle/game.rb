@@ -10,7 +10,9 @@ class Game
     @previous_guess = nil
     @size = size
     @board = Board.new(size)
-    @player = HumanPlayer
+    @human_player = HumanPlayer.new
+    @computer_player = ComputerPlayer.new
+    @player = @human_player
   end
 
   def play
@@ -22,12 +24,19 @@ class Game
       guess_pos = @player.prompt(@previous_guess, @board)
       @board.reveal(guess_pos)
       @board.render
+
+      # Computer player "sees" card (regardless of whose turn it is)
+      @computer_player.receive_revealed_card(@board[guess_pos].value, guess_pos)
+
       self.set_previous_guess(guess_pos)
 
       # Second guess
       guess_pos = @player.prompt(@previous_guess, @board)
       @board.reveal(guess_pos)
       @board.render
+
+      # Computer player "sees" card (regardless of whose turn it is)
+      @computer_player.receive_revealed_card(@board[guess_pos].value, guess_pos)
       
       # Check against previous guess
       if @board.reveal(@previous_guess) == @board.reveal(guess_pos)
@@ -46,7 +55,7 @@ class Game
       self.set_previous_guess(guess_pos)
 
       # Switch players
-      @player = @player == HumanPlayer ? ComputerPlayer : HumanPlayer
+      @player = @player == @human_player ? @computer_player : @human_player
     end
 
     "You win!!!"

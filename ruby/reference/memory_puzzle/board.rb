@@ -42,6 +42,18 @@ class Board
     squares
   end
 
+  def unrevealed_squares
+    squares = []
+
+    (0...@grid.length).each do |row|
+      (0...@grid.length).each do |col|
+        squares << [row, col] if self[[row, col]].revealed == false
+      end
+    end
+
+    squares
+  end
+
   def populate
     # Generate symbols for game
     alphabet_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
