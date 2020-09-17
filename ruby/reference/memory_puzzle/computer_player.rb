@@ -39,7 +39,9 @@ class ComputerPlayer
     false
   end
 
-  def receive_match
+  def receive_match(val, *positions)
+    @known_cards.delete(val)
+    @matched_cards[val] = positions
   end
 
   def receive_revealed_card(val, pos)

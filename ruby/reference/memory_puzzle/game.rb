@@ -26,7 +26,7 @@ class Game
       @board.render
 
       # Computer player "sees" card (regardless of whose turn it is)
-      @computer_player.receive_revealed_card(@board[guess_pos].value, guess_pos)
+      @computer_player.receive_revealed_card(@board.reveal(guess_pos), guess_pos)
 
       self.set_previous_guess(guess_pos)
 
@@ -36,11 +36,12 @@ class Game
       @board.render
 
       # Computer player "sees" card (regardless of whose turn it is)
-      @computer_player.receive_revealed_card(@board[guess_pos].value, guess_pos)
+      @computer_player.receive_revealed_card(@board.reveal(guess_pos), guess_pos)
       
       # Check against previous guess
       if @board.reveal(@previous_guess) == @board.reveal(guess_pos)
         puts "It's a match!!!"
+        @player.receive_match(@board.reveal(guess_pos), @previous_guess, guess_pos)
       else
         puts "No match."
 
