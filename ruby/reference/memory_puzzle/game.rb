@@ -5,6 +5,7 @@ require_relative 'computer_player.rb'
 require 'byebug'
 
 class Game
+  attr_reader :board
 
   def initialize(size = 4)
     @previous_guess = nil
@@ -41,7 +42,8 @@ class Game
       # Check against previous guess
       if @board.reveal(@previous_guess) == @board.reveal(guess_pos)
         puts "It's a match!!!"
-        @player.receive_match(@board.reveal(guess_pos), @previous_guess, guess_pos)
+        @human_player.receive_match(@board.reveal(guess_pos), @previous_guess, guess_pos)
+        @computer_player.receive_match(@board.reveal(guess_pos), @previous_guess, guess_pos)
       else
         puts "No match."
 
