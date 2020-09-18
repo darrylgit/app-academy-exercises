@@ -93,3 +93,10 @@ class Game
     @board.won?
   end
 end
+
+if __FILE__ == $PROGRAM_NAME
+  size = ARGV[0] ? ARGV[0] : 4
+
+  game = Game.new(size)
+  game.play
+end

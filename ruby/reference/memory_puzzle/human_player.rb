@@ -7,7 +7,7 @@ class HumanPlayer
 
     loop do
       
-      guess = gets.chomp
+      guess = STDIN.gets.chomp
       guess_pos = guess.split(' ').map(&:to_i)
 
     break if self.valid_guess?(guess_pos, prev_guess, board)
