@@ -1,10 +1,7 @@
-require 'rubygems'
-# require 'bundler/setup'
-
 require 'colorize'
 
 class Tile 
-  def initialize(given)
+  def initialize(given = false)
     @value = "3"
     @given = given
   end
