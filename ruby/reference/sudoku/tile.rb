@@ -11,7 +11,6 @@ class Tile
   end
 
   def to_s
-    @given ? (puts @value.to_s.colorize(:light_blue)) : (puts @value.to_s)
-    puts "\n"
+    " " + (@given ? @value.to_s.colorize(:light_blue) : @value.to_s) + " "
   end
 end
