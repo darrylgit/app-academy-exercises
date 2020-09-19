@@ -1,8 +1,8 @@
 require 'colorize'
 
 class Tile 
-  def initialize(given = false)
-    @value = "3"
+  def initialize(value, given = false)
+    @value = value
     @given = given
   end
 
@@ -11,7 +11,7 @@ class Tile
   end
 
   def to_s
-    @given ? (puts @value.colorize(:light_blue)) : (puts @value)
+    @given ? (puts @value.to_s.colorize(:light_blue)) : (puts @value.to_s)
     puts "\n"
   end
 end
