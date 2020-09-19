@@ -4,9 +4,13 @@ require 'rubygems'
 require 'colorize'
 
 class Tile 
-  def initialize
+  def initialize(given)
     @value = "3"
-    @given = true
+    @given = given
+  end
+
+  def update_value(val)
+    @value = val if @given
   end
 
   def to_s
