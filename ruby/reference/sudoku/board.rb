@@ -30,7 +30,9 @@ class Board
   end
 
   def solved?
-    return [self.rows_solved?, self.columns_solved?, self.three_by_three_squares_solved?].all?
+    grid_values = self.grid_values
+
+    return [self.rows_solved?(grid_values), self.columns_solved?(grid_values), self.three_by_three_squares_solved?(grid_values)].all?
   end
 
   def grid_values
@@ -39,9 +41,7 @@ class Board
     end
   end
 
-  def rows_solved?
-    grid_values = self.grid_values
-
+  def rows_solved?(grid_values)
     grid_values.each do |row|
       (1..9).each { |value| return false if !row.include?(value) }
     end
@@ -49,9 +49,7 @@ class Board
     true
   end 
 
-  def columns_solved?
-    grid_values = self.grid_values
-
+  def columns_solved?(grid_values)
     (0...9).each do |col_number|
       column = grid_values.map { |row| row[col_number] }.flatten
       
@@ -61,9 +59,7 @@ class Board
     true
   end
 
-  def three_by_three_squares_solved?
-    grid_values = self.grid_values
-
+  def three_by_three_squares_solved?(grid_values)
     current_square = []
 
     # Time for a quadruple loop
