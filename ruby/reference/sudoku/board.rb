@@ -42,11 +42,23 @@ class Board
     grid_values = self.grid_values
 
     grid_values.each do |row|
-      (1..9).each { |num| return false if !row.include?(num) }
+      (1..9).each { |value| return false if !row.include?(value) }
     end
 
     true
   end 
+
+  def columns_solved?
+    grid_values = self.grid_values
+
+    (0...9).each do |col_number|
+      column = grid_values.map { |row| row[col_number] }.flatten
+      
+      (1..9).each { |value| return false if !column.include?(value) }
+    end
+
+    true
+  end
 
   def render
     puts "\n"
