@@ -32,7 +32,9 @@ class Board
   def solved?
     grid_values = self.grid_values
 
-    return [self.rows_solved?(grid_values), self.columns_solved?(grid_values), self.three_by_three_squares_solved?(grid_values)].all?
+    [self.rows_solved?(grid_values),  
+    self.columns_solved?(grid_values), 
+    self.three_by_three_squares_solved?(grid_values)].all?
   end
 
   def grid_values
