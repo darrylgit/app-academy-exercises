@@ -29,7 +29,27 @@ class Board
     @grid = grid_arr
   end
 
-  def render_board
+  def solved
+  end
+
+  def grid_values
+    @grid.map do |row|
+      row.map { |tile| tile.value } 
+    end
+  end
+
+  def rows_solved?
+    grid_values = self.grid_values
+
+    grid_values.each do |row|
+      (1..9).each { |num| return false if !row.include?(num) }
+    end
+
+    true
+  end 
+
+  def render
+    puts "\n"
     @grid.each_with_index do |row, row_number|
       row.each_with_index do |tile, i|
         if row_number < 3 || row_number > 5
@@ -48,7 +68,6 @@ class Board
       end
       puts "\n"
       puts "\n"
-
     end
 
     nil

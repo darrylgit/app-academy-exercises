@@ -1,6 +1,8 @@
 require 'colorize'
 
-class Tile 
+class Tile
+  attr_reader :value
+  
   def initialize(value)
     @value = value.to_i
 
