@@ -64,8 +64,6 @@ class Board
   def three_by_three_squares_solved?
     grid_values = self.grid_values
 
-    squares = Array.new(9) { [] }
-
     current_square = []
 
     # Time for a quadruple loop
