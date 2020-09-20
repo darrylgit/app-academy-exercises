@@ -60,6 +60,47 @@ class Board
     true
   end
 
+  def three_by_three_squares_solved?
+    grid_values = self.grid_values
+
+    squares = Array.new(9) { [] }
+
+    current_square = []
+
+    # Time for a quadruple loop
+
+    # Start at 0, increment by 3
+    starting_tile_row = 0
+    while starting_tile_row < 9
+      # Start at 0, increment by 3
+      starting_tile_column = 0
+      while starting_tile_column < 9
+        # Iterate through each of the three rows in the square
+        tile_row_within_square = 0
+        while tile_row_within_square < 3
+          current_row = starting_tile_row + tile_row_within_square
+          (starting_tile_column..starting_tile_column + 2).each do |column|
+            current_square << grid_values[current_row][column]
+          end
+          tile_row_within_square += 1
+        end
+        # At this point, we have nine values in the current_square array
+        # Check for 1-9
+        (1..9).each { |value| return false if !current_square.include?(value) }
+
+        # Clear array
+        current_square = []
+        
+        # Move one square column over
+        starting_tile_column += 3
+      end
+      # Move one square row down
+      starting_tile_row += 3
+    end
+    
+    true
+  end
+
   def render
     puts "\n"
     @grid.each_with_index do |row, row_number|
