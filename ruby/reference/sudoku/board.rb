@@ -29,7 +29,8 @@ class Board
     @grid = grid_arr
   end
 
-  def solved
+  def solved?
+    return [self.rows_solved?, self.columns_solved?, self.three_by_three_squares_solved?].all?
   end
 
   def grid_values
@@ -79,9 +80,13 @@ class Board
         tile_row_within_square = 0
         while tile_row_within_square < 3
           current_row = starting_tile_row + tile_row_within_square
+
+          # Iterate through each of the three colums within said row of current square
           (starting_tile_column..starting_tile_column + 2).each do |column|
             current_square << grid_values[current_row][column]
           end
+
+          # Move down to the next row
           tile_row_within_square += 1
         end
         # At this point, we have nine values in the current_square array
