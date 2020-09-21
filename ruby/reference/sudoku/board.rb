@@ -42,6 +42,11 @@ class Board
     return @grid[row][column]
   end
 
+  def []=(row, column, value)
+    tile = self[row, column]
+    tile.update_value(value)
+  end
+
   def grid_values
     @grid.map do |row|
       row.map { |tile| tile.value } 
