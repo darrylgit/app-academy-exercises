@@ -37,6 +37,11 @@ class Board
     self.three_by_three_squares_solved?(grid_values)].all?
   end
 
+  def [] (*coords)
+    row, column = coords
+    return @grid[row][column]
+  end
+
   def grid_values
     @grid.map do |row|
       row.map { |tile| tile.value } 
