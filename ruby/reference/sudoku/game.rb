@@ -6,33 +6,33 @@ class Game
   end
 
   def play
-    until board.solved?
+    until @board.solved?
       @board.render
       self.prompt
-      @board[row, column] = val
     end
     
     return "You win!"
   end
-
+  
   def prompt
     user_input = []
     puts "Enter three integers in the format: row column value"
-
+    
     loop do
-
+      
       user_input = gets.chomp.split(" ")
-
-    break if self.valid_input?(user_input)
-
+      
+      break if self.valid_input?(user_input)
+      
     end
-
+    
     row, column, value = user_input
-
+    
     row = row.to_i
     column = column.to_i
     value = value.to_i
-
+    
+    @board[row, column] = value
   end
 
   def valid_input?(input_values)
