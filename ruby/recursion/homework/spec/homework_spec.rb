@@ -8,3 +8,12 @@ describe "sum_to" do
     expect(sum_to(-8)).to eq(nil)
   end
 end
+
+describe "add_numbers" do
+  it "should add numbers in array" do
+    expect(add_numbers([1,2,3,4])).to eq(10)
+    expect(add_numbers([3])).to eq(3)
+    expect(add_numbers([-80,34,7])).to eq(-39)
+    expect(add_numbers([])).to eq(nil)
+  end
+end
