@@ -25,3 +25,8 @@ def ice_cream_shop(flavors, favorite)
   ice_cream_shop(flavors, favorite)
 end
 
+def reverse(string)
+  return string if string.length <= 1
+
+  string[-1] + reverse(string[0...-1])
+end

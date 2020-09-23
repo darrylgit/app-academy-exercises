@@ -36,3 +36,14 @@ describe "ice_cream_shop" do
     expect(ice_cream_shop([], 'honey lavender')).to eq(false)
   end
 end
+
+describe "reverse" do
+  it "should reverse lmao" do
+    expect(reverse("house")).to eq("esuoh")
+    expect(reverse("dog")).to eq("god")
+    expect(reverse("atom")).to eq("mota")
+    expect(reverse("q")).to eq("q")
+    expect(reverse("id")).to eq("di")
+    expect(reverse("")).to eq("")
+  end
+end
