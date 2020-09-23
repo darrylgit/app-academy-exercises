@@ -17,3 +17,11 @@ def gamma_fnc(n)
 
   (n - 1) * gamma_fnc(n - 1)
 end
+
+def ice_cream_shop(flavors, favorite)
+  return false if flavors.empty?
+
+  return true if flavors.pop == favorite
+  ice_cream_shop(flavors, favorite)
+end
+

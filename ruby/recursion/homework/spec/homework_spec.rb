@@ -26,3 +26,13 @@ describe "gamma_fnc" do
     expect(gamma_fnc(8)).to eq(5040)
   end
 end
+
+describe "ice_cream_shop" do
+  it "tells if if we have the user's favorite ice cream flavor" do
+    expect(ice_cream_shop(['vanilla', 'strawberry'], 'blue moon')).to eq(false)
+    expect(ice_cream_shop(['pistachio', 'green tea', 'chocolate', 'mint chip'], 'green tea')).to eq(true)
+    expect(ice_cream_shop(['cookies n cream', 'blue moon', 'superman', 'honey lavender', 'sea salt caramel'], 'pistachio')).to eq(false)
+    expect(ice_cream_shop(['moose tracks'], 'moose tracks')).to eq(true)
+    expect(ice_cream_shop([], 'honey lavender')).to eq(false)
+  end
+end
