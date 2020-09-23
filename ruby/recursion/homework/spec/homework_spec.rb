@@ -17,3 +17,12 @@ describe "add_numbers" do
     expect(add_numbers([])).to eq(nil)
   end
 end
+
+describe "gamma_fnc" do
+  it "should do the gamma function which I guess is just the factorial of n - 1" do
+    expect(gamma_fnc(0)).to eq(nil)
+    expect(gamma_fnc(1)).to eq(1)
+    expect(gamma_fnc(4)).to eq(6)
+    expect(gamma_fnc(8)).to eq(5040)
+  end
+end
