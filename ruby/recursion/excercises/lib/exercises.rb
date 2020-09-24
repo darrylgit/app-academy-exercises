@@ -19,3 +19,9 @@ def exp_1(base, exp)
 
   base * exp_1(base, exp - 1)
 end
+
+def exp_2(base, exp)
+  return 1 if exp == 0
+
+  exp.even? ? exp_2(base, exp / 2) * exp_2(base, exp / 2) : base * exp_2(base, (exp - 1) / 2) * exp_2(base, (exp - 1) / 2)
+end

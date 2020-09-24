@@ -32,3 +32,13 @@ describe "exp_1" do
     expect(exp_1(2, 3)).to eq(8)
   end
 end
+
+describe "exp_2" do
+  it "exponentiates stuff all fancy shmancy" do
+    expect(exp_2(2, 1)).to eq(2)
+    expect(exp_2(3, 0)).to eq(1)
+    expect(exp_2(3, 2)).to eq(9)
+    expect(exp_2(3, 3)).to eq(27)
+    expect(exp_2(2, 3)).to eq(8)
+  end
+end
