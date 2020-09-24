@@ -22,3 +22,13 @@ describe "array_sum_iterative" do
     expect(array_sum_iterative([1])).to eq(1)
   end
 end
+
+describe "exp_1" do
+  it "exponentiates stuff" do
+    expect(exp_1(2, 1)).to eq(2)
+    expect(exp_1(3, 1)).to eq(3)
+    expect(exp_1(3, 2)).to eq(9)
+    expect(exp_1(3, 3)).to eq(27)
+    expect(exp_1(2, 3)).to eq(8)
+  end
+end
