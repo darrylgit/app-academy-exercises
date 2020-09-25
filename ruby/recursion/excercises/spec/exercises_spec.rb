@@ -42,3 +42,23 @@ describe "exp_2" do
     expect(exp_2(2, 3)).to eq(8)
   end
 end
+
+describe "deep_dup" do 
+  it "deeply duplicates an array" do
+    robot_parts = [
+      ["nuts", "bolts", "washers"],
+      ["capacitors", "resistors", "inductors"]
+    ]
+
+    # robot_parts_copy = robot_parts.deep_dup
+    robot_parts_copy = robot_parts.deep_dup
+
+
+    robot_parts_copy[1] << "LEDs"
+
+    expect(robot_parts_copy[1]).to eq(["capacitors", "resistors", "inductors", "LEDs"])
+    expect(robot_parts[1]).to eq(["capacitors", "resistors", "inductors"])
+
+
+  end
+end

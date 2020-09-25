@@ -25,3 +25,19 @@ def exp_2(base, exp)
 
   exp.even? ? exp_2(base, exp / 2) * exp_2(base, exp / 2) : base * exp_2(base, (exp - 1) / 2) * exp_2(base, (exp - 1) / 2)
 end
+
+class Array 
+  def deep_dup
+    # Base case
+    return [*self] if self.none? { |el| el.is_a?(Array) }
+
+    output = []
+
+    # Shovel the result of the recursive call on element if array, else simply shovel element
+    self.each do |el|
+      el.is_a?(Array) ? output << el.deep_dup : output << el
+    end
+
+    output
+  end
+end
