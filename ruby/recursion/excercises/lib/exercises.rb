@@ -41,3 +41,13 @@ class Array
     output
   end
 end
+
+def fibonacci(n)
+  return [] if n <= 0
+  return [1] if n == 1
+  return [1, 1] if n == 2
+
+  prev_arr = fibonacci(n-1)
+
+  [*prev_arr, prev_arr[-2] + prev_arr[-1]]
+end

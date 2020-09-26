@@ -62,3 +62,12 @@ describe "deep_dup" do
 
   end
 end
+
+describe "fibonacci" do 
+  it "returns a fibonacci array" do
+    expect(fibonacci(0)).to eq([])
+    expect(fibonacci(1)).to eq([1])
+    expect(fibonacci(6)).to eq([1, 1, 2, 3, 5, 8])
+    expect(fibonacci(8)).to eq([1, 1, 2, 3, 5, 8, 13, 21])
+  end
+end
