@@ -1,3 +1,5 @@
+require 'byebug'
+
 def range(start_val, end_val)
   return [] if start_val >= end_val
 
@@ -50,4 +52,20 @@ def fibonacci(n)
   prev_arr = fibonacci(n-1)
 
   [*prev_arr, prev_arr[-2] + prev_arr[-1]]
+end
+
+def bsearch(arr, val)
+  # debugger
+  return nil if !arr.include?(val)
+
+  middle_index = (arr.length / 2).floor
+
+  return middle_index if arr[middle_index] == val
+
+  if arr[middle_index] > val
+    return bsearch(arr[0...middle_index], val) || 0
+  else
+    return middle_index + (bsearch(arr[middle_index..-1], val) || 0)
+  end
+
 end

@@ -71,3 +71,15 @@ describe "fibonacci" do
     expect(fibonacci(8)).to eq([1, 1, 2, 3, 5, 8, 13, 21])
   end
 end
+
+describe "binary search" do
+  it "returns an index using binary search" do
+    expect(bsearch([1, 2, 3], 1)).to eq(0)
+    expect(bsearch([2, 3, 4, 5], 3)).to eq(1)
+    expect(bsearch([2, 4, 6, 8, 10], 6)).to eq(2)
+    expect(bsearch([1, 3, 4, 5, 9], 5)).to eq(3)
+    expect(bsearch([1, 2, 3, 4, 5, 6], 6)).to eq(5)
+    expect(bsearch([1, 2, 3, 4, 5, 6], 0)).to eq(nil)
+    expect(bsearch([1, 2, 3, 4, 5, 7], 6)).to eq(nil)
+  end
+end
