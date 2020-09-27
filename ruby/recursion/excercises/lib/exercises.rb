@@ -55,17 +55,24 @@ def fibonacci(n)
 end
 
 def bsearch(arr, val)
-  return if arr.length == 0
+  # Base case: nothing found
+  return if arr.empty?
 
+  # Get middle index
   middle_index = (arr.length / 2).floor
 
+  # Found it!
   return middle_index if arr[middle_index] == val
 
   if arr[middle_index] > val
+    # Search preceding subarray
     return bsearch(arr[0...middle_index], val)
   else
-    found_index = bsearch(arr[middle_index + 1..-1], val)
-    return middle_index + 1 + found_index if found_index
+    # Search following subarray
+    middle_index += 1
+    found_index = bsearch(arr[middle_index..-1], val)
+    return middle_index + found_index if found_index
   end
 
+  # Implicit return of nil
 end
