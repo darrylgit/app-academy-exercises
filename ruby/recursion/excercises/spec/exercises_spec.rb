@@ -84,18 +84,18 @@ describe "binary search" do
   end
 end
 
-# describe "merge sort" do
-#   it "sorts an array via merges" do
-#     expect(merge_sort([38, 27, 43, 3, 9, 82, 10])).to eq([3, 9, 10, 27, 38, 43, 82])
-#     expect(merge_sort([38, 27, 43, 9, 82, 10])).to eq([9, 10, 27, 38, 43, 82])
-#     expect(merge_sort([1, 100])).to eq([1, 100])
-#     expect(merge_sort([100, 1])).to eq([1, 100])
-#     expect(merge_sort([1])).to eq([1])
-#     expect(merge_sort([])).to eq([])
-#   end
-# end
+describe "merge sort" do
+  it "sorts an array via merges" do
+    expect(merge_sort([38, 27, 43, 3, 9, 82, 10])).to eq([3, 9, 10, 27, 38, 43, 82])
+    expect(merge_sort([38, 27, 43, 9, 82, 10])).to eq([9, 10, 27, 38, 43, 82])
+    expect(merge_sort([1, 100])).to eq([1, 100])
+    expect(merge_sort([100, 1])).to eq([1, 100])
+    expect(merge_sort([1])).to eq([1])
+    expect(merge_sort([])).to eq([])
+  end
+end
 
-describe "merge" do
+describe "merge helper" do
   it "merges two arrays" do
     expect(merge([1], [2])).to eq([1, 2])
     expect(merge([3, 5], [6, 4])).to eq([3, 4, 5, 6])

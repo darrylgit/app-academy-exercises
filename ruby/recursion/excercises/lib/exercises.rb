@@ -86,19 +86,17 @@ def merge_sort(arr)
   arr_first_half = arr[0...middle_index]
   arr_second_half = arr[middle_index..-1]
 
-
-
-  merge_sort(arr[0...middle_index]) + merge_sort(arr[middle_index..-1])
+  merge(merge_sort(arr_first_half), merge_sort(arr_second_half))
 end
 
 def merge(arr1, arr2)
   # Chose to do this without Array.sort
-  
+
   output = []
 
   all_values = [*arr1, *arr2]
 
-  # Shovel last value into output array
+  # Shovel last value into output array immediately, just so we don't have to deal with nil comparisons
   output << all_values.pop
 
 
