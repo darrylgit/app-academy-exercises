@@ -76,3 +76,50 @@ def bsearch(arr, val)
 
   # Implicit return of nil
 end
+
+def merge_sort(arr)
+  return arr if arr.length <= 1
+
+  # Get middle index
+  middle_index = (arr.length / 2).floor
+
+  arr_first_half = arr[0...middle_index]
+  arr_second_half = arr[middle_index..-1]
+
+
+
+  merge_sort(arr[0...middle_index]) + merge_sort(arr[middle_index..-1])
+end
+
+def merge(arr1, arr2)
+  # Chose to do this without Array.sort
+  
+  output = []
+
+  all_values = [*arr1, *arr2]
+
+  # Shovel last value into output array
+  output << all_values.pop
+
+
+  while all_values.length > 0
+    # Pop last value off all_values
+    popped_value = all_values.pop
+
+    # If it's bigger than the last value in the output array, shovel
+    if popped_value >= output[-1]
+      output << popped_value
+      next
+    end
+
+    # Else, iterate through output array until we find a value greater than the popped value, then insert 
+    output.each_with_index do |val, i|
+      if val > popped_value
+        output.insert(i, popped_value)
+        break
+      end
+    end
+  end
+
+  output
+end
