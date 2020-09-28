@@ -121,3 +121,16 @@ def merge(arr1, arr2)
 
   output
 end
+
+def subsets(arr)
+  return [arr] if arr.empty?
+
+  last_value = arr[-1]
+  arr_without_last_value = arr[0...-1]
+
+  prev_subsets = subsets(arr_without_last_value)
+
+  new_subsets = prev_subsets.map {|subarr| [*subarr, last_value]}
+
+  prev_subsets + new_subsets 
+end

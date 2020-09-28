@@ -102,3 +102,12 @@ describe "merge helper" do
     expect(merge([5, 3], [6, 2, 4])).to eq([2, 3, 4, 5, 6])
   end
 end
+
+describe "subsets" do
+  it "returns all array subsets" do
+    expect(subsets([])).to eq([[]])
+    expect(subsets([1])).to eq([[], [1]])
+    expect(subsets([1, 2])).to eq([[], [1], [2], [1, 2]])
+    expect(subsets([1, 2, 3])).to eq([[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]])
+  end
+end
