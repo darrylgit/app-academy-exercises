@@ -130,7 +130,23 @@ def subsets(arr)
 
   prev_subsets = subsets(arr_without_last_value)
 
+  # Add last_value to all previous subsets
   new_subsets = prev_subsets.map {|subarr| [*subarr, last_value]}
 
+  # Concatenate
   prev_subsets + new_subsets 
+end
+
+def permutations(arr)
+  return [arr] if arr.length <= 1
+
+  output = []
+
+  (0...arr.length).each do |index|
+    first_el = arr[0]
+    output += permutations(arr[1..-1]).map { |subarr| [first_el, *subarr]}
+    arr.push(arr.shift)
+  end
+
+  output
 end

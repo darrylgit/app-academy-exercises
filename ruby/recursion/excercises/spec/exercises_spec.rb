@@ -111,3 +111,13 @@ describe "subsets" do
     expect(subsets([1, 2, 3])).to eq([[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]])
   end
 end
+
+describe "permutations" do
+  it "returns permutations" do
+    expect(permutations([1])).to eq([[1]])
+    expect(permutations([1, 2])).to eq([[1, 2], [2, 1]])
+    expect(permutations([1, 2, 3])).to eq([[1, 2, 3], [1, 3, 2],
+                                           [2, 3, 1], [2, 1, 3],
+                                           [3, 1, 2], [3, 2, 1]])
+  end
+end
