@@ -159,6 +159,27 @@ def greedy_make_change(amount, coins = [25, 10, 5, 1])
   num_coins = amount / current_largest_coin
   amount %= current_largest_coin
 
-
   Array.new(num_coins){current_largest_coin} + greedy_make_change(amount, coins)
 end
+
+def make_better_change(amount, coins = [5, 1])
+  return [] if amount == 0
+
+  best_change = nil
+
+  coins.each do |coin|
+    next if coin > amount
+
+    change_for_rest = make_better_change(amount - coin, coins)
+    change = [coin] + change_for_rest
+
+    if best_change.nil? || change.count < best_change.count
+      best_change = change
+    end
+  end
+
+  best_change
+end
+
+print make_better_change(14, [10, 7, 1])
+print "\n"
