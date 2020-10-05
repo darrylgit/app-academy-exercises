@@ -21,8 +21,10 @@ class WordChainer
   end
 
   def word_compare(original_word, candidate_word)
-    # Reject immediately if length is different 
-    return false if original_word.length != candidate_word.length
+    # Reject immediately if length is different or if words are exactly equal
+    return false if original_word.length != candidate_word.length || original_word == candidate_word
+
+
 
     candidate_word_dup = candidate_word.dup
     original_word_dup = original_word.dup
