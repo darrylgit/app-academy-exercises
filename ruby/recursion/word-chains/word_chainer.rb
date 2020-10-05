@@ -1,6 +1,8 @@
 require 'byebug'
 
 class WordChainer 
+
+  attr_reader :all_seen_words
   def initialize(dictionary_file_name = "dictionary.txt")
      # Load words into dictionary set
      @dictionary = Set.new([])
@@ -12,6 +14,9 @@ class WordChainer
      end
  
      file.close
+
+     @current_words = []
+     @all_seen_words = []
   end
 
   def adjacent_words(word)
@@ -23,8 +28,6 @@ class WordChainer
   def word_compare(original_word, candidate_word)
     # Reject immediately if length is different or if words are exactly equal
     return false if original_word.length != candidate_word.length || original_word == candidate_word
-
-
 
     candidate_word_dup = candidate_word.dup
     original_word_dup = original_word.dup
@@ -43,5 +46,28 @@ class WordChainer
     end 
 
     false
+  end
+
+  def run(source, target = nil)
+    @current_words << source
+    @all_seen_words << source
+
+    while !@current_words.empty?
+      new_current_words = []
+
+      @current_words.each do |word|
+        self.adjacent_words(word).each do |adj_word|
+          next if @all_seen_words.include?(adj_word)
+          
+          new_current_words << adj_word
+          @all_seen_words << adj_word
+        end
+        
+        @current_words = new_current_words
+      end
+      print new_current_words
+
+    end
+
   end
 end
