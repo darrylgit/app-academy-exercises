@@ -50,16 +50,15 @@ class WordChainer
   end
 
   def run(source, target = nil)
-    # Reset if new source
-    if @previous_source != source
-      @previous_source = source
-      @current_words = [source]
-      @all_seen_words = { source => nil }
-  
-      while !@current_words.empty? && !@all_seen_words.has_key?(target)
-        self.explore_current_words
-      end
+    return "Invalid target" if !@dictionary.include?(target)
+
+    @current_words = [source]
+    @all_seen_words = { source => nil }
+
+    while !@current_words.empty? && !@all_seen_words.has_key?(target)
+      self.explore_current_words
     end
+    
 
 
     self.build_path(target)
