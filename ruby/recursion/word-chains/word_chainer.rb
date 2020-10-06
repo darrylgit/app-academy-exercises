@@ -56,7 +56,7 @@ class WordChainer
       @current_words = [source]
       @all_seen_words = { source => nil }
   
-      while !@current_words.empty?
+      while !@current_words.empty? && !@all_seen_words.has_key?(target)
         self.explore_current_words
       end
     end
