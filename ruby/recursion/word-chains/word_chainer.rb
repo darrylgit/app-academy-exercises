@@ -16,7 +16,7 @@ class WordChainer
      file.close
 
      @current_words = []
-     @all_seen_words = []
+     @all_seen_words = { }
   end
 
   def adjacent_words(word)
@@ -50,27 +50,29 @@ class WordChainer
 
   def run(source, target = nil)
     @current_words << source
-    @all_seen_words << source
+    @all_seen_words[source] = nil
 
     while !@current_words.empty?
       self.explore_current_words
-
     end
   end
 
   def explore_current_words
     new_current_words = []
 
-    @current_words.each do |word|
-      self.adjacent_words(word).each do |adj_word|
-        next if @all_seen_words.include?(adj_word)
+    @current_words.each do |current_word|
+      self.adjacent_words(current_word).each do |adjacent_word|
+        next if @all_seen_words.has_key?(adjacent_word)
         
-        new_current_words << adj_word
-        @all_seen_words << adj_word
+        new_current_words << adjacent_word
+        @all_seen_words[adjacent_word] = current_word
       end
       
       @current_words = new_current_words
     end
-    print new_current_words
+
+    new_current_words.each do |current_word|
+      puts "#{current_word} => #{all_seen_words[current_word]}"
+    end
   end
 end
