@@ -53,21 +53,24 @@ class WordChainer
     @all_seen_words << source
 
     while !@current_words.empty?
-      new_current_words = []
-
-      @current_words.each do |word|
-        self.adjacent_words(word).each do |adj_word|
-          next if @all_seen_words.include?(adj_word)
-          
-          new_current_words << adj_word
-          @all_seen_words << adj_word
-        end
-        
-        @current_words = new_current_words
-      end
-      print new_current_words
+      self.explore_current_words
 
     end
+  end
 
+  def explore_current_words
+    new_current_words = []
+
+    @current_words.each do |word|
+      self.adjacent_words(word).each do |adj_word|
+        next if @all_seen_words.include?(adj_word)
+        
+        new_current_words << adj_word
+        @all_seen_words << adj_word
+      end
+      
+      @current_words = new_current_words
+    end
+    print new_current_words
   end
 end
