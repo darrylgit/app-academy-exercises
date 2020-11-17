@@ -28,7 +28,12 @@ class Play
       WHERE 
         title = ?
     SQL
-    data.map { |datum| Play.new(datum) }
+
+    results = data.map { |datum| Play.new(datum) }
+
+    return results.first if results.length == 1
+    
+    results 
   end
 
   def self.find_by_playwright(name)
@@ -47,7 +52,12 @@ class Play
             name = ?
         )
     SQL
-    data.map { |datum| Play.new(datum) }
+
+    results = data.map { |datum| Play.new(datum) }
+
+    return results.first if results.length == 1
+    
+    results 
   end
   
   def initialize(options)
@@ -99,7 +109,12 @@ class Playwright
       WHERE 
         name = ?
     SQL
-    data.map { |datum| Playwright.new(datum) } 
+
+    results = data.map { |datum| Playwright.new(datum) }
+
+    return results.first if results.length == 1
+
+    results 
   end
 
   def initialize(options)
@@ -129,5 +144,22 @@ class Playwright
       WHERE
         id = ?
     SQL
+  end
+
+  def get_plays
+    data = PlayDBConnection.instance.execute(<<-SQL, @id)
+      SELECT 
+        *
+      FROM
+        plays
+      WHERE
+        playwright_id = ?
+    SQL
+
+    results = data.map { |datum| Play.new(datum) }
+
+    return results.first if results.length == 1
+
+    results 
   end
 end
