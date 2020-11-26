@@ -19,6 +19,21 @@ class User
     User.new(data.first)
   end
 
+  def self.find_by_name(fname, lname)
+    data = QuestionsDBConnection.instance.execute(<<-SQL, fname, lname)
+      SELECT 
+        *
+      FROM
+        users
+      WHERE 
+        fname = ? AND lname = ?
+    SQL
+
+    return "No user found" if data.length == 0
+
+    data.length == 1 ? User.new(data.first) : data.map { |datum| User.new(datum) }
+  end
+
   def initialize(options)
     @id = options['id']
     @fname = options['fname']
