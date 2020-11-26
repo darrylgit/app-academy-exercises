@@ -16,6 +16,8 @@ class Reply
         id = ?
     SQL
 
+    return "No replies found" if data.length == 0
+
     Reply.new(data.first)
   end
 
@@ -29,7 +31,24 @@ class Reply
         question_id = ?
     SQL
 
-    data.map { |datum| Reply.new(datum) }
+    return "No replies found" if data.length == 0
+
+    data.length == 1 ? Reply.new(data.first) : data.map { |datum| Reply.new(datum) }
+  end
+
+  def self.find_by_user_id(id)
+    data = QuestionsDBConnection.instance.execute(<<-SQL, id)
+      SELECT 
+        *
+      FROM
+        replies
+      WHERE 
+        author = ?
+    SQL
+
+    return "No replies found" if data.length == 0
+
+    data.length == 1 ? Reply.new(data.first) : data.map { |datum| Reply.new(datum) }
   end
 
   def initialize(options)
