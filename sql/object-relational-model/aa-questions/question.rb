@@ -38,4 +38,17 @@ class Question
     @body = options['body']
     @author = options['author']
   end
+
+  def author
+    data = QuestionsDBConnection.instance.execute(<<-SQL, @author)
+      SELECT 
+        *
+      FROM
+        users
+      WHERE 
+        id = ?
+    SQL
+
+    User.new(data.first)
+  end
 end
