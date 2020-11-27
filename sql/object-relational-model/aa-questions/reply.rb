@@ -73,4 +73,17 @@ class Reply
     @author = options['author']
     @question_id = options['question_id']
   end
+
+  def author
+    data = QuestionsDBConnection.instance.execute(<<-SQL, @author)
+      SELECT 
+        *
+      FROM
+        users
+      WHERE 
+        id = ?
+    SQL
+
+    User.new(data.first)
+  end
 end
