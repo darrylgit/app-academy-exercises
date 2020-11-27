@@ -51,4 +51,8 @@ class Question
 
     User.new(data.first)
   end
+
+  def replies
+    Reply.find_by_question_id(@id)
+  end
 end
