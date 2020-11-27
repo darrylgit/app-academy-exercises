@@ -40,16 +40,7 @@ class Question
   end
 
   def author
-    data = QuestionsDBConnection.instance.execute(<<-SQL, @author)
-      SELECT 
-        *
-      FROM
-        users
-      WHERE 
-        id = ?
-    SQL
-
-    User.new(data.first)
+    User.find_by_id(@author)
   end
 
   def replies
