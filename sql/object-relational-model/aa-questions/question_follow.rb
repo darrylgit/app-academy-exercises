@@ -22,7 +22,7 @@ class QuestionFollow
   def self.followers_for_question_id(id)
     data = QuestionsDBConnection.instance.execute(<<-SQL, id)
       SELECT 
-        *
+        users.id, fname, lname
       FROM
         users
       JOIN
@@ -37,6 +37,7 @@ class QuestionFollow
 
     data.length == 1 ? User.new(data.first) : data.map { |datum| User.new(datum) }
   end
+
 
   def initialize(options)
     @id = options['id']
