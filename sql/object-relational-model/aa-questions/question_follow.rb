@@ -13,7 +13,7 @@ class QuestionFollow
       FROM
         question_follows
       WHERE 
-        id = ?
+        id = ?;
     SQL
 
     QuestionFollow.new(data.first)
@@ -30,12 +30,31 @@ class QuestionFollow
       ON 
         users.id = question_follows.user_id
       WHERE
-        question_follows.question_id = ?
+        question_follows.question_id = ?;
     SQL
 
     return "No user found" if data.length == 0
 
     data.length == 1 ? User.new(data.first) : data.map { |datum| User.new(datum) }
+  end
+
+  def self.followed_questions_for_user_id(id)
+    data = QuestionsDBConnection.instance.execute(<<-SQL, id)
+      SELECT
+        questions.id, author, body, title
+      FROM
+        questions
+      JOIN 
+        question_follows ON question_follows.question_id = questions.id
+      JOIN 
+        users ON question_follows.user_id = users.id
+      WHERE 
+        users.id = ?;
+    SQL
+
+    return "No questions found" if data.length == 0
+
+    data.length == 1 ? Question.new(data.first) : data.map { |datum| Question.new(datum) }
   end
 
 
