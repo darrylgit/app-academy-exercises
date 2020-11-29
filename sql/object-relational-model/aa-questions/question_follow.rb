@@ -68,7 +68,7 @@ class QuestionFollow
       GROUP BY
         questions.id
       ORDER BY 
-        COUNT(question_follows.id)
+        COUNT(question_follows.id) DESC
       LIMIT 
         ?
     SQL
