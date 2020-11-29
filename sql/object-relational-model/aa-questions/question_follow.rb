@@ -57,6 +57,27 @@ class QuestionFollow
     data.length == 1 ? Question.new(data.first) : data.map { |datum| Question.new(datum) }
   end
 
+  def self.most_followed_questions(n)
+    data = QuestionsDBConnection.instance.execute(<<-SQL, n)
+      SELECT
+        questions.id, author, body, title
+      FROM
+        questions
+      JOIN 
+        question_follows ON question_follows.question_id = questions.id
+      GROUP BY
+        questions.id
+      ORDER BY 
+        COUNT(question_follows.id)
+      LIMIT 
+        ?
+    SQL
+
+    return "No questions found" if data.length == 0
+
+    data.length == 1 ? Question.new(data.first) : data.map { |datum| Question.new(datum) }
+  end
+
 
   def initialize(options)
     @id = options['id']
