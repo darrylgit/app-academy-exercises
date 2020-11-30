@@ -51,6 +51,25 @@ class QuestionLike
     data.first["COUNT(users.id)"]
   end
 
+  def self.liked_questions_for_user_id(id)
+    data = QuestionsDBConnection.instance.execute(<<-SQL, id)
+      SELECT
+        questions.id, author, body, title
+      FROM 
+        questions
+      JOIN 
+        question_likes ON question_likes.question_id = questions.id
+      JOIN
+        users ON question_likes.user_id = users.id
+      WHERE
+        users.id = ?
+    SQL
+
+    return "No questions found" if data.length == 0
+
+    data.length == 1 ? Question.new(data.first) : data.map { |datum| Question.new(datum) }
+  end
+
   def initialize(options)
     @id = options['id']
     @question_id = options['question_id']
