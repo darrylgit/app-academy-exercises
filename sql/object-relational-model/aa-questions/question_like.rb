@@ -70,6 +70,26 @@ class QuestionLike
     data.length == 1 ? Question.new(data.first) : data.map { |datum| Question.new(datum) }
   end
 
+  def self.most_liked_questions(n)
+    data = QuestionsDBConnection.instance.execute(<<-SQL, n)
+      SELECT 
+        questions.id, author, body, title
+      FROM 
+        questions
+      JOIN 
+        question_likes ON question_likes.question_id = questions.id
+      GROUP BY
+        questions.id
+      ORDER BY 
+        COUNT(*) DESC
+      LIMIT ?
+    SQL
+      
+    return "No questions found" if data.length == 0
+
+    data.length == 1 ? Question.new(data.first) : data.map { |datum| Question.new(datum) }
+  end
+
   def initialize(options)
     @id = options['id']
     @question_id = options['question_id']
